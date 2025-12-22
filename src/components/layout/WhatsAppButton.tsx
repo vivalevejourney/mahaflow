@@ -8,7 +8,7 @@ interface WhatsAppButtonProps {
 }
 
 export const WhatsAppButton = ({
-  phoneNumber = '5522999999999',
+  phoneNumber = '5522981602212',
   message = 'Olá! Vim pelo site da Mahaflow e gostaria de saber mais sobre as experiências.',
   className,
 }: WhatsAppButtonProps) => {
