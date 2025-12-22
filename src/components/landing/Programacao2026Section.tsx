@@ -1,30 +1,9 @@
-import { ArrowRight, Calendar, MapPin, Users, Clock, Sparkles, CheckCircle2, Shield } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Users, Clock, Sparkles, CheckCircle2, Shield, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { programacoes2026, getCategoriaLabel, getCategoriaColor, getProgramacoesPorMes } from '@/data/programacao2026';
 import { differenceInDays, parseISO, isToday, isTomorrow, isPast } from 'date-fns';
-
-// Import images
-import praiaImg from '@/assets/mahaflow-praia.jpg';
-import grupoTrilhaImg from '@/assets/mahaflow-grupo-trilha.jpg';
-import cachoeiraGrupoImg from '@/assets/mahaflow-cachoeira-grupo.jpg';
-import conexaoImg from '@/assets/mahaflow-conexao.jpg';
-import praiaGrupoImg from '@/assets/mahaflow-praia-grupo.jpg';
-import cachoeiraImg from '@/assets/mahaflow-cachoeira.jpg';
-import topoMontanhaImg from '@/assets/mahaflow-topo-montanha.jpg';
-import raftingActionImg from '@/assets/mahaflow-rafting-action.jpg';
-
-const imageMap: Record<string, string> = {
-  'mahaflow-praia.jpg': praiaImg,
-  'mahaflow-grupo-trilha.jpg': grupoTrilhaImg,
-  'mahaflow-cachoeira-grupo.jpg': cachoeiraGrupoImg,
-  'mahaflow-conexao.jpg': conexaoImg,
-  'mahaflow-praia-grupo.jpg': praiaGrupoImg,
-  'mahaflow-cachoeira.jpg': cachoeiraImg,
-  'mahaflow-topo-montanha.jpg': topoMontanhaImg,
-  'mahaflow-rafting-action.jpg': raftingActionImg,
-};
 
 // Função para calcular e formatar dias restantes com mensagens aprimoradas
 const getCountdownInfo = (dataISO: string) => {
@@ -183,43 +162,40 @@ export const Programacao2026Section = () => {
                   return (
                     <article
                       key={prog.id}
-                      className={`group relative overflow-hidden rounded-2xl bg-card border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 ${countdown.passada ? 'opacity-70' : ''}`}
+                      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-secondary/20 border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 ${countdown.passada ? 'opacity-70' : ''}`}
                       style={{ animationDelay: `${(mesIndex * 0.1) + (index * 0.05)}s` }}
                     >
-                      {/* Image */}
-                      <div className="relative aspect-[16/10] overflow-hidden">
-                        <img
-                          src={imageMap[prog.imagem] || praiaImg}
-                          alt={prog.nome}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                        
-                        {/* Data + Dia da Semana */}
-                        <div className="absolute top-4 left-4">
-                          <div className="bg-white rounded-xl px-4 py-3 shadow-xl">
-                            <p className="text-xs font-bold text-primary uppercase tracking-wider">
-                              {prog.diaSemana}
-                            </p>
-                            <p className="text-sm font-bold text-foreground">
-                              {prog.data}
-                            </p>
+                      {/* Header com data e categoria - sem imagem de fundo */}
+                      <div className="relative p-6 pb-4 bg-gradient-to-r from-primary/5 via-transparent to-secondary/10">
+                        <div className="flex items-start justify-between gap-4">
+                          {/* Data + Dia da Semana */}
+                          <div className="flex items-center gap-3">
+                            <div className="w-14 h-14 rounded-xl bg-primary/10 flex flex-col items-center justify-center border border-primary/20">
+                              <span className="text-xs font-medium text-primary uppercase">
+                                {prog.diaSemana.slice(0, 3)}
+                              </span>
+                              <span className="text-lg font-bold text-foreground leading-none">
+                                {prog.data.split(' ')[0]}
+                              </span>
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-foreground">{prog.data}</p>
+                              <p className="text-xs text-muted-foreground">{prog.dataCompleta?.split(' de ').slice(1).join(' de ') || '2026'}</p>
+                            </div>
                           </div>
+
+                          {/* Category badge */}
+                          <Badge className={`${getCategoriaColor(prog.categoria)} shrink-0`}>
+                            {getCategoriaLabel(prog.categoria)}
+                          </Badge>
                         </div>
 
-                        {/* Category badge */}
-                        <Badge 
-                          className={`absolute top-4 right-4 ${getCategoriaColor(prog.categoria)} shadow-lg`}
-                        >
-                          {getCategoriaLabel(prog.categoria)}
-                        </Badge>
-
-                        {/* Countdown - Redesenhado */}
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <div className={`${countdown.className} rounded-xl px-4 py-3 flex items-center justify-between`}>
+                        {/* Countdown */}
+                        <div className="mt-4">
+                          <div className={`${countdown.className} rounded-lg px-3 py-2 flex items-center justify-between text-sm`}>
                             <div className="flex items-center gap-2">
-                              <Clock size={16} />
-                              <span className="font-bold">
+                              <Clock size={14} />
+                              <span className="font-semibold">
                                 {countdown.emoji} {countdown.texto}
                               </span>
                             </div>
@@ -230,6 +206,16 @@ export const Programacao2026Section = () => {
                             )}
                           </div>
                         </div>
+
+                        {/* Indicador de Galeria */}
+                        {prog.galeria && prog.galeria.length > 0 && (
+                          <div className="absolute top-4 right-4">
+                            <div className="flex items-center gap-1.5 bg-black/70 text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                              <Camera size={12} />
+                              {prog.galeria.length} fotos
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Content */}
@@ -294,7 +280,7 @@ export const Programacao2026Section = () => {
                             size="lg"
                             variant={countdown.passada ? "outline" : "default"}
                           >
-                            {countdown.passada ? 'Ver Galeria' : 'Reservar Agora'}
+                            {countdown.passada ? 'Ver Galeria' : 'Detalhes / Reservar'}
                             <ArrowRight
                               size={18}
                               className="ml-2 group-hover/btn:translate-x-1 transition-transform"

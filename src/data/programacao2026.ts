@@ -41,6 +41,7 @@ export interface Programacao {
     minimo?: number;
   };
   imagem: string;
+  galeria?: string[]; // Array de imagens da galeria (será preenchido quando enviar fotos)
   categoria: 'agua' | 'trilha' | 'expedicao' | 'vivencia';
 }
 
