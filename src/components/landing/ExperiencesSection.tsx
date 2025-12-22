@@ -1,5 +1,4 @@
-import { ArrowRight, MapPin, Clock, TrendingUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { MapPin, Clock, TrendingUp, Camera } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
@@ -13,13 +12,13 @@ import raftingVermelho from '@/assets/mahaflow-rafting-vermelho.jpg';
 import trekkingAltitude from '@/assets/mahaflow-trekking-altitude.jpg';
 import trekkingSunset from '@/assets/mahaflow-trekking-sunset.jpg';
 
-// Image mapping by experience ID - CORRIGIDO
+// Image mapping by experience ID
 const experienceImages: Record<string, string> = {
   'rafting': raftingAction,
   'remo-vaa': remoVaa,
   'flutuacao': flutuacao,
   'trilha-urca': grupoTrilha,
-  'sup': praiaGrupo,
+  'escalada-pico': praiaGrupo,
   'rafting-extremo': raftingVermelho,
   'trekking-altitude': trekkingAltitude,
   'trekking-sunset': trekkingSunset,
@@ -33,6 +32,7 @@ interface Experience {
   category: string;
   difficulty?: 'fácil' | 'moderado' | 'desafiador';
   duration?: string;
+  year?: string;
 }
 
 const experiences: Experience[] = [
@@ -44,6 +44,7 @@ const experiences: Experience[] = [
     category: 'Aventura',
     difficulty: 'moderado',
     duration: '4 horas',
+    year: '2024',
   },
   {
     id: 'remo-vaa',
@@ -53,6 +54,7 @@ const experiences: Experience[] = [
     category: 'Água',
     difficulty: 'fácil',
     duration: '2 horas',
+    year: '2024',
   },
   {
     id: 'flutuacao',
@@ -62,6 +64,7 @@ const experiences: Experience[] = [
     category: 'Bem-estar',
     difficulty: 'fácil',
     duration: '2 horas',
+    year: '2024',
   },
   {
     id: 'trilha-urca',
@@ -71,15 +74,17 @@ const experiences: Experience[] = [
     category: 'Trilhas',
     difficulty: 'fácil',
     duration: '3 horas',
+    year: '2024',
   },
   {
-    id: 'sup',
+    id: 'escalada-pico',
     name: 'Escalada ao Pico',
     description: 'Conquiste o topo da montanha e viva a emoção de alcançar o cume. Superação, paisagens incríveis e conexão com a natureza.',
     location: 'Região Serrana, RJ',
     category: 'Trilhas',
     difficulty: 'desafiador',
     duration: '1-2 dias',
+    year: '2024',
   },
   {
     id: 'rafting-extremo',
@@ -89,6 +94,7 @@ const experiences: Experience[] = [
     category: 'Aventura',
     difficulty: 'desafiador',
     duration: '6 horas',
+    year: '2025',
   },
   {
     id: 'trekking-altitude',
@@ -98,6 +104,7 @@ const experiences: Experience[] = [
     category: 'Trilhas',
     difficulty: 'desafiador',
     duration: '8 horas',
+    year: '2025',
   },
   {
     id: 'trekking-sunset',
@@ -107,6 +114,7 @@ const experiences: Experience[] = [
     category: 'Trilhas',
     difficulty: 'moderado',
     duration: '4 horas',
+    year: '2025',
   },
 ];
 
@@ -118,29 +126,25 @@ const difficultyColors = {
 
 export const ExperiencesSection = () => {
   return (
-    <section id="experiencias" className="section-padding relative overflow-hidden">
-      {/* Background gradiente verde */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/50 via-primary/5 to-secondary/30" />
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-secondary/60 to-transparent rounded-full blur-3xl" />
+    <section id="experiencias-passadas" className="section-padding relative overflow-hidden">
+      {/* Background gradiente nostálgico */}
+      <div className="absolute inset-0 bg-gradient-to-br from-muted/50 via-background to-muted/30" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-secondary/40 to-transparent rounded-full blur-3xl" />
       
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            Nossas Experiências
-          </span>
+          <Badge className="mb-4 bg-muted text-muted-foreground border-border hover:bg-muted/80">
+            <Camera size={14} className="mr-1" />
+            Memórias
+          </Badge>
           <h2 className="heading-2 text-foreground mt-4 mb-6">
-            Aventuras para todos os estilos
+            Memórias Mahaflow
           </h2>
-          <p className="body-large">
-            Do rafting cheio de adrenalina ao yoga contemplativo, temos a experiência 
-            perfeita para você.
-          </p>
-          {/* Microtexto RotaFácil */}
-          <p className="text-sm text-muted-foreground mt-4 flex items-center justify-center gap-2">
-            <span className="w-2 h-2 bg-primary rounded-full" />
-            Experiências bem organizadas do início ao fim
+          <p className="body-large text-muted-foreground">
+            Relembre as aventuras incríveis que já vivemos juntos. Cada experiência é única 
+            e transforma quem participa.
           </p>
         </div>
 
@@ -149,7 +153,7 @@ export const ExperiencesSection = () => {
           {experiences.map((experience, index) => (
             <article
               key={experience.id}
-              className="group card-elevated overflow-hidden animate-fade-in-up bg-card/80 backdrop-blur-sm"
+              className="group card-elevated overflow-hidden animate-fade-in-up bg-card/80 backdrop-blur-sm opacity-90 hover:opacity-100 transition-opacity"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
@@ -157,7 +161,7 @@ export const ExperiencesSection = () => {
                 <img
                   src={experienceImages[experience.id] || experienceImages['rafting']}
                   alt={experience.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 
@@ -165,6 +169,18 @@ export const ExperiencesSection = () => {
                 <Badge className="absolute top-4 left-4 bg-white/90 text-foreground hover:bg-white">
                   {experience.category}
                 </Badge>
+
+                {/* Year Badge */}
+                {experience.year && (
+                  <Badge className="absolute top-4 right-4 bg-black/60 text-white border-transparent">
+                    {experience.year}
+                  </Badge>
+                )}
+
+                {/* Realizada overlay */}
+                <div className="absolute bottom-4 left-4 bg-muted/90 text-muted-foreground rounded-lg px-3 py-1.5 text-sm font-medium">
+                  ✅ Realizada
+                </div>
               </div>
 
               {/* Content */}
@@ -205,29 +221,20 @@ export const ExperiencesSection = () => {
                     {experience.difficulty}
                   </Badge>
                 )}
-
-                {/* CTA */}
-                <Button className="w-full group/btn">
-                  Inscrever-se
-                  <ArrowRight
-                    size={16}
-                    className="ml-2 group-hover/btn:translate-x-1 transition-transform"
-                  />
-                </Button>
               </div>
             </article>
           ))}
         </div>
 
-        {/* View All CTA */}
+        {/* Bottom text */}
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg" className="group">
-            Ver todas as experiências
-            <ArrowRight
-              size={18}
-              className="ml-2 group-hover:translate-x-1 transition-transform"
-            />
-          </Button>
+          <p className="text-muted-foreground">
+            🌟 Essas são algumas das experiências que já marcaram nossa jornada. 
+            <br />
+            <span className="text-primary font-medium">
+              Confira o calendário 2026 para as próximas aventuras!
+            </span>
+          </p>
         </div>
       </div>
     </section>

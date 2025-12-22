@@ -5,6 +5,7 @@ export interface Programacao {
   slug: string;
   nome: string;
   data: string;
+  dataISO: string; // Formato YYYY-MM-DD para cálculos de data
   dataCompleta: string;
   descricaoResumida: string;
   descricaoCompleta: string;
@@ -47,6 +48,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'catamara-sao-joao',
     nome: 'Passeio de Catamarã',
     data: '11 de janeiro',
+    dataISO: '2026-01-11',
     dataCompleta: '11 de janeiro de 2026 (domingo)',
     descricaoResumida: 'Uma experiência leve, contemplativa e perfeita para começar o ano com energia boa, sol, água e conexão.',
     descricaoCompleta: 'Uma experiência leve, contemplativa e perfeita para começar o ano com energia boa, sol, água e conexão. Navegue pelas águas cristalinas de São João da Barra em um catamarã confortável.',
@@ -68,6 +70,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'trilha-urca',
     nome: 'Rio de Janeiro – Morro da Urca',
     data: '17 de janeiro',
+    dataISO: '2026-01-17',
     dataCompleta: '17 de janeiro de 2026 (sábado)',
     descricaoResumida: 'Trilha clássica, visual incrível e aquele dia com clima de Rio que todo mundo ama.',
     descricaoCompleta: 'Trilha clássica, visual incrível e aquele dia com clima de Rio que todo mundo ama. Uma das trilhas mais icônicas do Rio de Janeiro com vistas deslumbrantes.',
@@ -89,6 +92,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'carnaval-caparao',
     nome: 'Expedição Carnaval no Caparaó',
     data: '14 a 17 de fevereiro',
+    dataISO: '2026-02-14',
     dataCompleta: '14 a 17 de fevereiro de 2026 – 3 diárias',
     descricaoResumida: 'Carnaval Alternativo Mahaflow. Para quem quer fugir do carnaval tradicional e viver natureza, cachoeiras e experiências reais.',
     descricaoCompleta: 'Carnaval Alternativo Mahaflow. Para quem quer fugir do carnaval tradicional e viver natureza, cachoeiras e experiências reais. Uma imersão completa no Parque Nacional do Caparaó.',
@@ -129,6 +133,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'dia-namaste',
     nome: 'Dia Namastê – Pós-Carnaval',
     data: '28 de fevereiro',
+    dataISO: '2026-02-28',
     dataCompleta: '28 de fevereiro de 2026 (sábado)',
     descricaoResumida: 'Uma pausa consciente para reorganizar corpo, mente e energia após o Carnaval.',
     descricaoCompleta: 'Uma pausa consciente para reorganizar corpo, mente e energia após o Carnaval. Vivência holística completa com práticas de bem-estar e conexão.',
@@ -149,6 +154,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'travessia-joatinga',
     nome: 'Travessia Joatinga – Paraty',
     data: '27 a 29 de março',
+    dataISO: '2026-03-27',
     dataCompleta: '27 a 29 de março de 2026',
     descricaoResumida: 'Uma das travessias de praias mais lindas do Brasil. Vivência exclusiva, intensa e transformadora.',
     descricaoCompleta: 'Uma das travessias de praias mais lindas do Brasil. Vivência exclusiva, intensa e transformadora. Percorra praias paradisíacas em uma jornada inesquecível.',
@@ -190,6 +196,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'semana-santa-macacu',
     nome: 'Semana Santa – Cachoeira de Macacu',
     data: '03 a 05 de abril',
+    dataISO: '2026-04-03',
     dataCompleta: '03 a 05 de abril de 2026',
     descricaoResumida: 'Imersão em natureza com camping, cachoeiras e vivência coletiva.',
     descricaoCompleta: 'Imersão em natureza com camping, cachoeiras e vivência coletiva. Perfeito para quem busca desconexão e contato profundo com a natureza.',
@@ -219,6 +226,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'pico-caledonia',
     nome: 'Pico da Caledônia',
     data: '15 a 16 de maio',
+    dataISO: '2026-05-15',
     dataCompleta: '15 a 16 de maio de 2026 (sexta e sábado)',
     descricaoResumida: 'Experiência clássica de montanha, superação e visual absurdo.',
     descricaoCompleta: 'Experiência clássica de montanha, superação e visual absurdo. Conquiste um dos picos mais bonitos da região serrana.',
@@ -238,6 +246,7 @@ export const programacoes2026: Programacao[] = [
     slug: 'rafting-sapucaia',
     nome: 'Rafting em Sapucaia',
     data: '23 de maio',
+    dataISO: '2026-05-23',
     dataCompleta: '23 de maio de 2026 (sábado)',
     descricaoResumida: 'Adrenalina, diversão e conexão em grupo.',
     descricaoCompleta: 'Adrenalina, diversão e conexão em grupo. Descida emocionante pelas corredeiras de Sapucaia com toda a segurança.',
