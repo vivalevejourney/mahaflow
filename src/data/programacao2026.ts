@@ -41,7 +41,8 @@ export interface Programacao {
     minimo?: number;
   };
   imagem: string;
-  galeria?: string[]; // Array de imagens da galeria (será preenchido quando enviar fotos)
+  galeria?: string[];
+  video?: string; // Vídeo da experiência (opcional)
   categoria: 'agua' | 'trilha' | 'expedicao' | 'vivencia';
 }
 
@@ -77,7 +78,8 @@ export const programacoes2026: Programacao[] = [
     pagamento: {
       pixParcelado: '50% em dezembro + 50% em janeiro (estilo consórcio, sem cartão)',
     },
-    imagem: 'mahaflow-praia.jpg',
+    imagem: '/src/assets/experiencias/catamara-sao-joao/capa.png',
+    video: '/src/assets/experiencias/catamara-sao-joao/video.mp4',
     categoria: 'agua',
   },
   {
@@ -108,7 +110,11 @@ export const programacoes2026: Programacao[] = [
     pagamento: {
       pixParcelado: 'PIX parcelado (estilo consórcio), sem cartão de crédito',
     },
-    imagem: 'mahaflow-grupo-trilha.jpg',
+    imagem: '/src/assets/experiencias/trilha-urca/capa.png',
+    galeria: [
+      '/src/assets/experiencias/trilha-urca/galeria-1.jpg',
+      '/src/assets/experiencias/trilha-urca/galeria-2.jpg',
+    ],
     categoria: 'trilha',
   },
   {
@@ -159,7 +165,10 @@ export const programacoes2026: Programacao[] = [
       'Antas: trilha 40–45 min (nível intermediário)',
       'Rogério: nível leve/iniciante',
     ],
-    imagem: 'mahaflow-cachoeira-grupo.jpg',
+    imagem: '/src/assets/experiencias/carnaval-caparao/capa.jpeg',
+    galeria: [
+      '/src/assets/experiencias/carnaval-caparao/galeria-1.jpg',
+    ],
     categoria: 'expedicao',
   },
   {
@@ -189,7 +198,10 @@ export const programacoes2026: Programacao[] = [
     valorFormatado: 'Valor a definir',
     pagamento: {},
     informacoesImportantes: ['Valor e detalhes serão divulgados em breve'],
-    imagem: 'mahaflow-conexao.jpg',
+    imagem: '/src/assets/experiencias/dia-namaste/capa.png',
+    galeria: [
+      '/src/assets/experiencias/dia-namaste/galeria-1.png',
+    ],
     categoria: 'vivencia',
   },
   {

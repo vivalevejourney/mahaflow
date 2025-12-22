@@ -10,54 +10,71 @@ import { programacoes2026, getCategoriaLabel, getCategoriaColor, WHATSAPP_NUMBER
 import { differenceInDays, parseISO, isToday, isPast } from 'date-fns';
 import { useState } from 'react';
 
-// Componente de Galeria de Fotos
-const GaleriaFotos = ({ galeria, nome }: { galeria?: string[]; nome: string }) => {
+// Componente de Galeria de Fotos com suporte a vídeo
+const GaleriaFotos = ({ imagem, galeria, video, nome }: { imagem: string; galeria?: string[]; video?: string; nome: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
   
-  // Se não há galeria, mostrar placeholder
-  if (!galeria || galeria.length === 0) {
-    return (
-      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/30 to-primary/5 border border-border/50">
-        <div className="aspect-[16/9] md:aspect-[21/9] flex flex-col items-center justify-center p-8 text-center">
-          <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-            <Camera className="w-10 h-10 text-primary/50" />
-          </div>
-          <h3 className="text-xl font-semibold text-foreground mb-2">Galeria em breve</h3>
-          <p className="text-muted-foreground max-w-md">
-            As fotos desta experiência serão adicionadas em breve. 
-            Fique de olho para conferir os melhores momentos!
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // Criar array completo de mídia: capa + galeria
+  const todasImagens = [imagem, ...(galeria || [])];
+  const totalItens = todasImagens.length + (video ? 1 : 0);
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % galeria.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + galeria.length) % galeria.length);
+  const nextSlide = () => {
+    if (showVideo) {
+      setShowVideo(false);
+      setCurrentIndex(0);
+    } else if (currentIndex === todasImagens.length - 1 && video) {
+      setShowVideo(true);
+    } else {
+      setCurrentIndex((prev) => (prev + 1) % todasImagens.length);
+    }
+  };
+
+  const prevSlide = () => {
+    if (showVideo) {
+      setShowVideo(false);
+      setCurrentIndex(todasImagens.length - 1);
+    } else if (currentIndex === 0 && video) {
+      setShowVideo(true);
+    } else {
+      setCurrentIndex((prev) => (prev - 1 + todasImagens.length) % todasImagens.length);
+    }
+  };
 
   return (
     <div className="relative rounded-2xl overflow-hidden bg-card border border-border/50">
-      {/* Main Image */}
+      {/* Main Image ou Video */}
       <div className="aspect-[16/9] md:aspect-[21/9] relative">
-        <img
-          src={galeria[currentIndex]}
-          alt={`${nome} - Foto ${currentIndex + 1}`}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        {showVideo && video ? (
+          <video
+            src={video}
+            controls
+            autoPlay
+            className="w-full h-full object-cover"
+          >
+            Seu navegador não suporta vídeos.
+          </video>
+        ) : (
+          <img
+            src={todasImagens[currentIndex]}
+            alt={`${nome} - Foto ${currentIndex + 1}`}
+            className="w-full h-full object-cover"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
         
         {/* Navigation Arrows */}
-        {galeria.length > 1 && (
+        {totalItens > 1 && (
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-all"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-all z-10"
             >
               <ChevronLeft size={20} className="text-foreground" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-all"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-all z-10"
             >
               <ChevronRight size={20} className="text-foreground" />
             </button>
@@ -66,25 +83,36 @@ const GaleriaFotos = ({ galeria, nome }: { galeria?: string[]; nome: string }) =
         
         {/* Counter */}
         <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
-          <Camera size={14} />
-          {currentIndex + 1} / {galeria.length}
+          {showVideo ? '🎬' : <Camera size={14} />}
+          {showVideo ? 'Vídeo' : `${currentIndex + 1} / ${todasImagens.length}`}
+          {video && !showVideo && <span className="opacity-70">+ vídeo</span>}
         </div>
       </div>
       
       {/* Thumbnails */}
-      {galeria.length > 1 && (
+      {totalItens > 1 && (
         <div className="flex gap-2 p-3 bg-secondary/30 overflow-x-auto">
-          {galeria.map((img, idx) => (
+          {todasImagens.map((img, idx) => (
             <button
               key={idx}
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => { setCurrentIndex(idx); setShowVideo(false); }}
               className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                idx === currentIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
+                !showVideo && idx === currentIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
               <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
             </button>
           ))}
+          {video && (
+            <button
+              onClick={() => setShowVideo(true)}
+              className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all flex items-center justify-center bg-black/80 ${
+                showVideo ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
+              }`}
+            >
+              <span className="text-white text-lg">🎬</span>
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -132,9 +160,14 @@ const ExperienciaTemplate = () => {
           </Link>
         </div>
 
-        {/* Galeria de Fotos ou Placeholder */}
+        {/* Galeria de Fotos com Vídeo */}
         <div className="container mx-auto px-6 pb-8">
-          <GaleriaFotos galeria={experiencia.galeria} nome={experiencia.nome} />
+          <GaleriaFotos 
+            imagem={experiencia.imagem} 
+            galeria={experiencia.galeria} 
+            video={experiencia.video} 
+            nome={experiencia.nome} 
+          />
         </div>
 
         {/* Title Section */}
