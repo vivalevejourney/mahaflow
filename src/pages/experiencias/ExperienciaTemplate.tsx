@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
 import { programacoes2026, getCategoriaLabel, getCategoriaColor, WHATSAPP_NUMBER } from '@/data/programacao2026';
+import { getExperienciaMedia } from '@/data/experienciasImages';
 import { differenceInDays, parseISO, isToday, isPast } from 'date-fns';
 import { useState } from 'react';
 
@@ -142,6 +143,7 @@ const ExperienciaTemplate = () => {
   }
 
   const countdown = getCountdownInfo(experiencia.dataISO);
+  const media = getExperienciaMedia(experiencia.slug);
   const whatsappMessage = `Olá! Tenho interesse na experiência: ${experiencia.nome} (${experiencia.data}). Gostaria de mais informações e reservar minha vaga.`;
 
   return (
@@ -163,9 +165,9 @@ const ExperienciaTemplate = () => {
         {/* Galeria de Fotos com Vídeo */}
         <div className="container mx-auto px-6 pb-8">
           <GaleriaFotos 
-            imagem={experiencia.imagem} 
-            galeria={experiencia.galeria} 
-            video={experiencia.video} 
+            imagem={media.capa} 
+            galeria={media.galeria} 
+            video={media.video} 
             nome={experiencia.nome} 
           />
         </div>

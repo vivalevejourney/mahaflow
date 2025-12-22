@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { programacoes2026, getCategoriaLabel, getCategoriaColor, getProgramacoesPorMes } from '@/data/programacao2026';
+import { getExperienciaMedia } from '@/data/experienciasImages';
 import { differenceInDays, parseISO, isToday, isTomorrow, isPast } from 'date-fns';
 
 // Função para calcular e formatar dias restantes com mensagens aprimoradas
@@ -158,6 +159,7 @@ export const Programacao2026Section = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {programacoesPorMes[mes].map((prog, index) => {
                   const countdown = getCountdownInfo(prog.dataISO);
+                  const media = getExperienciaMedia(prog.slug);
                   
                   return (
                     <article
@@ -168,7 +170,7 @@ export const Programacao2026Section = () => {
                       {/* Imagem de Capa */}
                       <div className="relative aspect-[16/10] overflow-hidden">
                         <img 
-                          src={prog.imagem} 
+                          src={media.capa} 
                           alt={prog.nome}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
@@ -182,15 +184,15 @@ export const Programacao2026Section = () => {
                           
                           {/* Indicador de Galeria ou Vídeo */}
                           <div className="flex items-center gap-2">
-                            {prog.video && (
+                            {media.video && (
                               <div className="flex items-center gap-1.5 bg-red-500/90 text-white px-2.5 py-1 rounded-full text-xs font-medium">
                                 🎬 Vídeo
                               </div>
                             )}
-                            {prog.galeria && prog.galeria.length > 0 && (
+                            {media.galeria && media.galeria.length > 0 && (
                               <div className="flex items-center gap-1.5 bg-black/70 text-white px-2.5 py-1 rounded-full text-xs font-medium">
                                 <Camera size={12} />
-                                {prog.galeria.length} fotos
+                                {media.galeria.length} fotos
                               </div>
                             )}
                           </div>
