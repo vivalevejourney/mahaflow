@@ -120,15 +120,15 @@ export const VideoSection = () => {
   const videos: VideoData[] = [
     {
       src: videoExperiencia,
-      title: 'Canoa Havaiana • Mahaflow',
-      quote: 'Sinta a liberdade. Viva cada remada.',
-      description: 'O mar nos ensina que juntos, remamos mais longe.',
+      title: 'Experiências • Mahaflow',
+      quote: 'Viva momentos únicos. Conecte-se com a natureza.',
+      description: 'Cada aventura é uma oportunidade de transformação.',
     },
     {
       src: videoCanoa,
-      title: 'Expedição Va\'a • Mahaflow',
-      quote: 'A jornada é o destino.',
-      description: 'Cada remada é um passo rumo à conexão com o oceano.',
+      title: 'Canoa Havaiana • Mahaflow',
+      quote: 'Sinta a liberdade. Viva cada remada.',
+      description: 'O mar nos ensina que juntos, remamos mais longe.',
     },
     {
       src: videoMontanha,
