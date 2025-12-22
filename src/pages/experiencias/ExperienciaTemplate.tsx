@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, MapPin, Clock, Users, CheckCircle, XCircle, CreditCard, AlertTriangle, Mountain, Sparkles, Heart, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Clock, Users, CheckCircle, XCircle, CreditCard, AlertTriangle, Mountain, Sparkles, Heart, ArrowRight, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -8,26 +8,87 @@ import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
 import { programacoes2026, getCategoriaLabel, getCategoriaColor, WHATSAPP_NUMBER } from '@/data/programacao2026';
 import { differenceInDays, parseISO, isToday, isPast } from 'date-fns';
+import { useState } from 'react';
 
-// Import images
-import praiaImg from '@/assets/mahaflow-praia.jpg';
-import grupoTrilhaImg from '@/assets/mahaflow-grupo-trilha.jpg';
-import cachoeiraGrupoImg from '@/assets/mahaflow-cachoeira-grupo.jpg';
-import conexaoImg from '@/assets/mahaflow-conexao.jpg';
-import praiaGrupoImg from '@/assets/mahaflow-praia-grupo.jpg';
-import cachoeiraImg from '@/assets/mahaflow-cachoeira.jpg';
-import topoMontanhaImg from '@/assets/mahaflow-topo-montanha.jpg';
-import raftingActionImg from '@/assets/mahaflow-rafting-action.jpg';
+// Componente de Galeria de Fotos
+const GaleriaFotos = ({ galeria, nome }: { galeria?: string[]; nome: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Se não há galeria, mostrar placeholder
+  if (!galeria || galeria.length === 0) {
+    return (
+      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/30 to-primary/5 border border-border/50">
+        <div className="aspect-[16/9] md:aspect-[21/9] flex flex-col items-center justify-center p-8 text-center">
+          <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <Camera className="w-10 h-10 text-primary/50" />
+          </div>
+          <h3 className="text-xl font-semibold text-foreground mb-2">Galeria em breve</h3>
+          <p className="text-muted-foreground max-w-md">
+            As fotos desta experiência serão adicionadas em breve. 
+            Fique de olho para conferir os melhores momentos!
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-const imageMap: Record<string, string> = {
-  'mahaflow-praia.jpg': praiaImg,
-  'mahaflow-grupo-trilha.jpg': grupoTrilhaImg,
-  'mahaflow-cachoeira-grupo.jpg': cachoeiraGrupoImg,
-  'mahaflow-conexao.jpg': conexaoImg,
-  'mahaflow-praia-grupo.jpg': praiaGrupoImg,
-  'mahaflow-cachoeira.jpg': cachoeiraImg,
-  'mahaflow-topo-montanha.jpg': topoMontanhaImg,
-  'mahaflow-rafting-action.jpg': raftingActionImg,
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % galeria.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + galeria.length) % galeria.length);
+
+  return (
+    <div className="relative rounded-2xl overflow-hidden bg-card border border-border/50">
+      {/* Main Image */}
+      <div className="aspect-[16/9] md:aspect-[21/9] relative">
+        <img
+          src={galeria[currentIndex]}
+          alt={`${nome} - Foto ${currentIndex + 1}`}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        
+        {/* Navigation Arrows */}
+        {galeria.length > 1 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-all"
+            >
+              <ChevronLeft size={20} className="text-foreground" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-all"
+            >
+              <ChevronRight size={20} className="text-foreground" />
+            </button>
+          </>
+        )}
+        
+        {/* Counter */}
+        <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+          <Camera size={14} />
+          {currentIndex + 1} / {galeria.length}
+        </div>
+      </div>
+      
+      {/* Thumbnails */}
+      {galeria.length > 1 && (
+        <div className="flex gap-2 p-3 bg-secondary/30 overflow-x-auto">
+          {galeria.map((img, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                idx === currentIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
+              }`}
+            >
+              <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
 
 // Função para calcular countdown
@@ -59,63 +120,57 @@ const ExperienciaTemplate = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Image - Fullscreen */}
-      <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
-        <img
-          src={imageMap[experiencia.imagem] || praiaImg}
-          alt={experiencia.nome}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-black/30" />
-        
+      {/* Hero Section - Galeria ou Placeholder */}
+      <div className="relative bg-gradient-to-br from-secondary via-background to-primary/10 pt-24">
         {/* Back button */}
-        <Link to="/#calendario" className="absolute top-24 left-6 z-10">
-          <Button variant="outline" size="sm" className="bg-white/90 backdrop-blur-sm hover:bg-white">
-            <ArrowLeft size={16} className="mr-2" />
-            Voltar ao Calendário
-          </Button>
-        </Link>
+        <div className="container mx-auto px-6 mb-6">
+          <Link to="/#calendario">
+            <Button variant="outline" size="sm" className="bg-card/90 backdrop-blur-sm hover:bg-card">
+              <ArrowLeft size={16} className="mr-2" />
+              Voltar ao Calendário
+            </Button>
+          </Link>
+        </div>
 
-        {/* Countdown Badge */}
-        {!countdown.passada && (
-          <div className="absolute top-24 right-6 z-10">
-            <Badge className={`px-4 py-2 text-sm font-bold ${countdown.dias <= 7 ? 'bg-red-500 text-white animate-pulse' : 'bg-primary text-primary-foreground'}`}>
-              <Clock size={14} className="mr-2" />
-              {countdown.texto}
+        {/* Galeria de Fotos ou Placeholder */}
+        <div className="container mx-auto px-6 pb-8">
+          <GaleriaFotos galeria={experiencia.galeria} nome={experiencia.nome} />
+        </div>
+
+        {/* Title Section */}
+        <div className="container mx-auto px-6 pb-12">
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <Badge className={`${getCategoriaColor(experiencia.categoria)} text-sm`}>
+              {getCategoriaLabel(experiencia.categoria)}
             </Badge>
+            <Badge variant="outline" className="bg-card text-foreground">
+              {experiencia.diaSemana}
+            </Badge>
+            {!countdown.passada && (
+              <Badge className={`px-3 py-1 text-sm font-bold ${countdown.dias <= 7 ? 'bg-red-500 text-white animate-pulse' : 'bg-primary text-primary-foreground'}`}>
+                <Clock size={14} className="mr-2" />
+                {countdown.texto}
+              </Badge>
+            )}
           </div>
-        )}
-
-        {/* Title overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
-          <div className="container mx-auto">
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <Badge className={`${getCategoriaColor(experiencia.categoria)} text-sm`}>
-                {getCategoriaLabel(experiencia.categoria)}
-              </Badge>
-              <Badge variant="outline" className="bg-white/90 text-foreground">
-                {experiencia.diaSemana}
-              </Badge>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">
-              {experiencia.nome}
-            </h1>
-            <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            {experiencia.nome}
+          </h1>
+          <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
+            <span className="flex items-center gap-2 text-lg">
+              <Calendar size={20} className="text-primary" />
+              {experiencia.dataCompleta}
+            </span>
+            {experiencia.horarioSaida && (
               <span className="flex items-center gap-2 text-lg">
-                <Calendar size={20} className="text-primary" />
-                {experiencia.dataCompleta}
+                <Clock size={20} className="text-primary" />
+                Saída: {experiencia.horarioSaida}
               </span>
-              {experiencia.horarioSaida && (
-                <span className="flex items-center gap-2 text-lg">
-                  <Clock size={20} className="text-primary" />
-                  Saída: {experiencia.horarioSaida}
-                </span>
-              )}
-              <span className="flex items-center gap-2 text-lg">
-                <MapPin size={20} className="text-primary" />
-                {experiencia.localPartida}
-              </span>
-            </div>
+            )}
+            <span className="flex items-center gap-2 text-lg">
+              <MapPin size={20} className="text-primary" />
+              {experiencia.localPartida}
+            </span>
           </div>
         </div>
       </div>
@@ -392,7 +447,7 @@ const ExperienciaTemplate = () => {
                       className="block"
                     >
                       <Button className="w-full group" size="lg">
-                        Reservar Agora
+                        Reservar Vaga
                         <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </a>
