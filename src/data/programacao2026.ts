@@ -7,6 +7,10 @@ export interface Programacao {
   data: string;
   dataISO: string; // Formato YYYY-MM-DD para cálculos de data
   dataCompleta: string;
+  diaSemana: string;
+  localPartida: string;
+  conceito: string; // Texto emocional que define a experiência
+  oQueVaiViver: string[]; // Lista de vivências
   descricaoResumida: string;
   descricaoCompleta: string;
   incluso: string[];
@@ -29,6 +33,7 @@ export interface Programacao {
     conservacao?: string[];
     nivel?: string;
   };
+  roteiro?: string[];
   informacoesImportantes?: string[];
   horarioSaida?: string;
   vagas?: {
@@ -49,7 +54,16 @@ export const programacoes2026: Programacao[] = [
     nome: 'Passeio de Catamarã',
     data: '11 de janeiro',
     dataISO: '2026-01-11',
-    dataCompleta: '11 de janeiro de 2026 (domingo)',
+    dataCompleta: '11 de janeiro de 2026',
+    diaSemana: 'Domingo',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Começar o ano do jeito certo: água, sol, vento no rosto e mente leve. Uma experiência contemplativa, social e perfeita para abrir o calendário Mahaflow com o pé direito.',
+    oQueVaiViver: [
+      'Navegação tranquila pelo litoral',
+      'Conexão com o grupo',
+      'Clima leve, boas conversas e fotos absurdas',
+      'Energia de início de ano renovada',
+    ],
     descricaoResumida: 'Uma experiência leve, contemplativa e perfeita para começar o ano com energia boa, sol, água e conexão.',
     descricaoCompleta: 'Uma experiência leve, contemplativa e perfeita para começar o ano com energia boa, sol, água e conexão. Navegue pelas águas cristalinas de São João da Barra em um catamarã confortável.',
     incluso: [
@@ -71,9 +85,18 @@ export const programacoes2026: Programacao[] = [
     nome: 'Rio de Janeiro – Morro da Urca',
     data: '17 de janeiro',
     dataISO: '2026-01-17',
-    dataCompleta: '17 de janeiro de 2026 (sábado)',
+    dataCompleta: '17 de janeiro de 2026',
+    diaSemana: 'Sábado',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Trilha clássica, visual icônico e aquele dia que parece cena de filme. Para quem quer natureza, cidade e sensação de conquista — tudo no mesmo dia.',
+    oQueVaiViver: [
+      'Trilha com visual progressivo',
+      'Chegada no Morro da Urca',
+      'Vista icônica do Rio de Janeiro',
+      'Dia completo com clima carioca raiz',
+    ],
     descricaoResumida: 'Trilha clássica, visual incrível e aquele dia com clima de Rio que todo mundo ama.',
-    descricaoCompleta: 'Trilha clássica, visual incrível e aquele dia com clima de Rio que todo mundo ama. Uma das trilhas mais icônicas do Rio de Janeiro com vistas deslumbrantes.',
+    descricaoCompleta: 'Trilha clássica, visual incrível e aquele dia com clima de Rio que todo mundo ama. Uma das trilhas mais icônicas do Rio de Janeiro com vistas deslumbrantes da Baía de Guanabara.',
     incluso: [
       'Transporte saindo de Campos',
       'Trilha Morro da Urca',
@@ -93,7 +116,17 @@ export const programacoes2026: Programacao[] = [
     nome: 'Expedição Carnaval no Caparaó',
     data: '14 a 17 de fevereiro',
     dataISO: '2026-02-14',
-    dataCompleta: '14 a 17 de fevereiro de 2026 – 3 diárias',
+    dataCompleta: '14 a 17 de fevereiro de 2026',
+    diaSemana: 'Sábado a Terça',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Enquanto o mundo grita, você mergulha. Carnaval alternativo Mahaflow — natureza, cachoeiras, trilhas e conexão real. Desconexão do caos urbano.',
+    oQueVaiViver: [
+      'Cachoeiras icônicas do Caparaó',
+      'Trilhas em diferentes níveis',
+      'Convivência intensa em grupo',
+      'Desconexão total do caos urbano',
+      '3 diárias de imersão na natureza',
+    ],
     descricaoResumida: 'Carnaval Alternativo Mahaflow. Para quem quer fugir do carnaval tradicional e viver natureza, cachoeiras e experiências reais.',
     descricaoCompleta: 'Carnaval Alternativo Mahaflow. Para quem quer fugir do carnaval tradicional e viver natureza, cachoeiras e experiências reais. Uma imersão completa no Parque Nacional do Caparaó.',
     incluso: [
@@ -134,7 +167,16 @@ export const programacoes2026: Programacao[] = [
     nome: 'Dia Namastê – Pós-Carnaval',
     data: '28 de fevereiro',
     dataISO: '2026-02-28',
-    dataCompleta: '28 de fevereiro de 2026 (sábado)',
+    dataCompleta: '28 de fevereiro de 2026',
+    diaSemana: 'Sábado',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Depois do excesso, pausa. Depois do barulho, silêncio. Uma vivência para reorganizar corpo, mente e energia.',
+    oQueVaiViver: [
+      'Vivência holística completa',
+      'Práticas de respiração e meditação',
+      'Conexão consigo mesmo',
+      'Reorganização de energia pós-carnaval',
+    ],
     descricaoResumida: 'Uma pausa consciente para reorganizar corpo, mente e energia após o Carnaval.',
     descricaoCompleta: 'Uma pausa consciente para reorganizar corpo, mente e energia após o Carnaval. Vivência holística completa com práticas de bem-estar e conexão.',
     incluso: [
@@ -156,6 +198,17 @@ export const programacoes2026: Programacao[] = [
     data: '27 a 29 de março',
     dataISO: '2026-03-27',
     dataCompleta: '27 a 29 de março de 2026',
+    diaSemana: 'Sexta a Domingo',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Uma das travessias mais lindas do Brasil. Pesada? Sim. Transformadora? Muito mais. Experiência exclusiva, intensa e para quem já tem preparo físico e mental.',
+    oQueVaiViver: [
+      'Travessia por praias desertas',
+      'Trilhas costeiras de tirar o fôlego',
+      '~40 km de caminhada em 3 dias',
+      'Dormida em comunidades locais',
+      'Trechos de barco pelo mar',
+      'Superação pessoal',
+    ],
     descricaoResumida: 'Uma das travessias de praias mais lindas do Brasil. Vivência exclusiva, intensa e transformadora.',
     descricaoCompleta: 'Uma das travessias de praias mais lindas do Brasil. Vivência exclusiva, intensa e transformadora. Percorra praias paradisíacas em uma jornada inesquecível.',
     incluso: [
@@ -198,6 +251,20 @@ export const programacoes2026: Programacao[] = [
     data: '03 a 05 de abril',
     dataISO: '2026-04-03',
     dataCompleta: '03 a 05 de abril de 2026',
+    diaSemana: 'Sexta a Domingo',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Imersão em natureza com camping, cachoeiras e convivência real. Simples, intenso e memorável.',
+    oQueVaiViver: [
+      'Camping em meio à natureza',
+      'Cachoeiras Terceira Dimensão e Gravatá',
+      'Jequitibá e Banheira Natural',
+      'Churrasco e luau sob as estrelas',
+      'Conexão real com o grupo',
+    ],
+    roteiro: [
+      'Sexta: Cachoeiras Terceira Dimensão e Gravatá',
+      'Sábado: Jequitibá e Banheira Natural',
+    ],
     descricaoResumida: 'Imersão em natureza com camping, cachoeiras e vivência coletiva.',
     descricaoCompleta: 'Imersão em natureza com camping, cachoeiras e vivência coletiva. Perfeito para quem busca desconexão e contato profundo com a natureza.',
     incluso: [
@@ -215,8 +282,6 @@ export const programacoes2026: Programacao[] = [
     },
     informacoesImportantes: [
       'Garantia da vaga até março (30 dias antes do evento)',
-      'Roteiro: Sexta - Cachoeiras Terceira Dimensão e Gravatá',
-      'Roteiro: Sábado - Jequitibá e Banheira Natural',
     ],
     imagem: 'mahaflow-cachoeira.jpg',
     categoria: 'expedicao',
@@ -227,7 +292,16 @@ export const programacoes2026: Programacao[] = [
     nome: 'Pico da Caledônia',
     data: '15 a 16 de maio',
     dataISO: '2026-05-15',
-    dataCompleta: '15 a 16 de maio de 2026 (sexta e sábado)',
+    dataCompleta: '15 a 16 de maio de 2026',
+    diaSemana: 'Sexta e Sábado',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Montanha clássica. Superação física. Visual que humilha qualquer wallpaper.',
+    oQueVaiViver: [
+      'Conquista de um dos picos mais bonitos da região',
+      'Vista de 360° no topo',
+      'Trilha desafiadora e recompensadora',
+      'Nascer do sol inesquecível',
+    ],
     descricaoResumida: 'Experiência clássica de montanha, superação e visual absurdo.',
     descricaoCompleta: 'Experiência clássica de montanha, superação e visual absurdo. Conquiste um dos picos mais bonitos da região serrana.',
     incluso: [
@@ -247,7 +321,16 @@ export const programacoes2026: Programacao[] = [
     nome: 'Rafting em Sapucaia',
     data: '23 de maio',
     dataISO: '2026-05-23',
-    dataCompleta: '23 de maio de 2026 (sábado)',
+    dataCompleta: '23 de maio de 2026',
+    diaSemana: 'Sábado',
+    localPartida: 'Campos dos Goytacazes',
+    conceito: 'Adrenalina, risadas e espírito de equipe. Aqui não tem pose — só experiência real.',
+    oQueVaiViver: [
+      'Descida emocionante pelas corredeiras',
+      'Trabalho em equipe no bote',
+      'Adrenalina pura',
+      'Diversão garantida com o grupo',
+    ],
     descricaoResumida: 'Adrenalina, diversão e conexão em grupo.',
     descricaoCompleta: 'Adrenalina, diversão e conexão em grupo. Descida emocionante pelas corredeiras de Sapucaia com toda a segurança.',
     incluso: [
@@ -282,4 +365,21 @@ export const getCategoriaColor = (categoria: Programacao['categoria']) => {
     vivencia: 'bg-purple-100 text-purple-700 border-purple-200',
   };
   return colors[categoria];
+};
+
+// Agrupar programações por mês
+export const getProgramacoesPorMes = () => {
+  const porMes: Record<string, Programacao[]> = {};
+  
+  programacoes2026.forEach(prog => {
+    const mes = new Date(prog.dataISO).toLocaleDateString('pt-BR', { month: 'long' });
+    const mesCapitalizado = mes.charAt(0).toUpperCase() + mes.slice(1);
+    
+    if (!porMes[mesCapitalizado]) {
+      porMes[mesCapitalizado] = [];
+    }
+    porMes[mesCapitalizado].push(prog);
+  });
+  
+  return porMes;
 };
