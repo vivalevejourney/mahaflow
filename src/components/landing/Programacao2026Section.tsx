@@ -162,60 +162,74 @@ export const Programacao2026Section = () => {
                   return (
                     <article
                       key={prog.id}
-                      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-secondary/20 border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 ${countdown.passada ? 'opacity-70' : ''}`}
+                      className={`group relative overflow-hidden rounded-2xl border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 ${countdown.passada ? 'opacity-70' : ''}`}
                       style={{ animationDelay: `${(mesIndex * 0.1) + (index * 0.05)}s` }}
                     >
-                      {/* Header com data e categoria - sem imagem de fundo */}
-                      <div className="relative p-6 pb-4 bg-gradient-to-r from-primary/5 via-transparent to-secondary/10">
-                        <div className="flex items-start justify-between gap-4">
-                          {/* Data + Dia da Semana */}
-                          <div className="flex items-center gap-3">
-                            <div className="w-14 h-14 rounded-xl bg-primary/10 flex flex-col items-center justify-center border border-primary/20">
-                              <span className="text-xs font-medium text-primary uppercase">
+                      {/* Imagem de Capa */}
+                      <div className="relative aspect-[16/10] overflow-hidden">
+                        <img 
+                          src={prog.imagem} 
+                          alt={prog.nome}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        
+                        {/* Badges no topo da imagem */}
+                        <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
+                          <Badge className={`${getCategoriaColor(prog.categoria)} shrink-0`}>
+                            {getCategoriaLabel(prog.categoria)}
+                          </Badge>
+                          
+                          {/* Indicador de Galeria ou Vídeo */}
+                          <div className="flex items-center gap-2">
+                            {prog.video && (
+                              <div className="flex items-center gap-1.5 bg-red-500/90 text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                                🎬 Vídeo
+                              </div>
+                            )}
+                            {prog.galeria && prog.galeria.length > 0 && (
+                              <div className="flex items-center gap-1.5 bg-black/70 text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                                <Camera size={12} />
+                                {prog.galeria.length} fotos
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        
+                        {/* Info na parte inferior da imagem */}
+                        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-12 h-12 rounded-lg bg-white/95 flex flex-col items-center justify-center">
+                              <span className="text-[10px] font-medium text-primary uppercase leading-none">
                                 {prog.diaSemana.slice(0, 3)}
                               </span>
                               <span className="text-lg font-bold text-foreground leading-none">
                                 {prog.data.split(' ')[0]}
                               </span>
                             </div>
-                            <div>
-                              <p className="text-sm font-semibold text-foreground">{prog.data}</p>
-                              <p className="text-xs text-muted-foreground">{prog.dataCompleta?.split(' de ').slice(1).join(' de ') || '2026'}</p>
+                            <div className="text-white">
+                              <p className="text-sm font-semibold">{prog.data}</p>
+                              <p className="text-xs opacity-80">{prog.dataCompleta?.split(' de ').slice(1).join(' de ') || '2026'}</p>
                             </div>
-                          </div>
-
-                          {/* Category badge */}
-                          <Badge className={`${getCategoriaColor(prog.categoria)} shrink-0`}>
-                            {getCategoriaLabel(prog.categoria)}
-                          </Badge>
-                        </div>
-
-                        {/* Countdown */}
-                        <div className="mt-4">
-                          <div className={`${countdown.className} rounded-lg px-3 py-2 flex items-center justify-between text-sm`}>
-                            <div className="flex items-center gap-2">
-                              <Clock size={14} />
-                              <span className="font-semibold">
-                                {countdown.emoji} {countdown.texto}
-                              </span>
-                            </div>
-                            {countdown.subtexto && (
-                              <span className="text-xs opacity-90 hidden sm:block">
-                                {countdown.subtexto}
-                              </span>
-                            )}
                           </div>
                         </div>
+                      </div>
 
-                        {/* Indicador de Galeria */}
-                        {prog.galeria && prog.galeria.length > 0 && (
-                          <div className="absolute top-4 right-4">
-                            <div className="flex items-center gap-1.5 bg-black/70 text-white px-2.5 py-1 rounded-full text-xs font-medium">
-                              <Camera size={12} />
-                              {prog.galeria.length} fotos
-                            </div>
+                      {/* Countdown */}
+                      <div className="px-4 pt-3">
+                        <div className={`${countdown.className} rounded-lg px-3 py-2 flex items-center justify-between text-sm`}>
+                          <div className="flex items-center gap-2">
+                            <Clock size={14} />
+                            <span className="font-semibold">
+                              {countdown.emoji} {countdown.texto}
+                            </span>
                           </div>
-                        )}
+                          {countdown.subtexto && (
+                            <span className="text-xs opacity-90 hidden sm:block">
+                              {countdown.subtexto}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       {/* Content */}
