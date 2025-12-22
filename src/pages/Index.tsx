@@ -7,6 +7,7 @@ import { AboutSection } from '@/components/landing/AboutSection';
 import { FounderSection } from '@/components/landing/FounderSection';
 import { ExperiencesSection } from '@/components/landing/ExperiencesSection';
 import { VideoSection } from '@/components/landing/VideoSection';
+import { Programacao2026Section } from '@/components/landing/Programacao2026Section';
 import { CalendarSection } from '@/components/landing/CalendarSection';
 import { HowToJoinSection } from '@/components/landing/HowToJoinSection';
 import { MahaVIPSection } from '@/components/landing/MahaVIPSection';
@@ -28,9 +29,9 @@ const Index = () => {
         <FounderSection />
         <ExperiencesSection />
         <VideoSection />
+        <Programacao2026Section />
         <CalendarSection />
         <HowToJoinSection />
-        <MahaVIPSection />
         <MahaTinderSection />
         <MeetingsSection />
         <MyAccountSection />

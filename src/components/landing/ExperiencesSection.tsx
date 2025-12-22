@@ -74,12 +74,12 @@ const experiences: Experience[] = [
   },
   {
     id: 'sup',
-    name: 'Stand Up Paddle (SUP)',
-    description: 'Remada em pé com prancha SUP. Equilíbrio, força e contemplação da natureza.',
-    location: 'Lagoa de Araruama',
-    category: 'Água',
-    difficulty: 'fácil',
-    duration: '2 horas',
+    name: 'Escalada ao Pico',
+    description: 'Conquiste o topo da montanha e viva a emoção de alcançar o cume. Superação, paisagens incríveis e conexão com a natureza.',
+    location: 'Região Serrana, RJ',
+    category: 'Trilhas',
+    difficulty: 'desafiador',
+    duration: '1-2 dias',
   },
   {
     id: 'rafting-extremo',

@@ -15,6 +15,7 @@ import MahaTinder from "./pages/MahaTinder";
 import Loja from "./pages/Loja";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
+import ExperienciaTemplate from "./pages/experiencias/ExperienciaTemplate";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/mahatinder" element={<MahaTinder />} />
             <Route path="/loja" element={<Loja />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/experiencias/:slug" element={<ExperienciaTemplate />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
