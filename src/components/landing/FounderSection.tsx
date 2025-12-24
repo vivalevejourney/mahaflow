@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import videoDanilla from '@/assets/mahaflow-video-danilla.mp4';
+import posterDanilla from '@/assets/mahaflow-conexao.jpg';
 
 export const FounderSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -46,6 +47,7 @@ export const FounderSection = () => {
                 <video
                   ref={videoRef}
                   src={videoDanilla}
+                  poster={posterDanilla}
                   className="w-full h-full object-cover"
                   muted={isMuted}
                   loop={false}
