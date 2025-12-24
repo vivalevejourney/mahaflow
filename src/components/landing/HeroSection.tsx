@@ -115,8 +115,8 @@ export const HeroSection = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-20 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen lg:min-h-[90vh]">
+      <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-8 items-center min-h-screen lg:min-h-[90vh]">
           {/* Left Side - Text Content */}
           <div className="space-y-8 lg:pr-8 order-2 lg:order-1 z-10">
             {/* Tagline */}
@@ -185,7 +185,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Right Side - Polaroid Collage */}
-          <div className="relative order-1 lg:order-2 h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+          <div className="relative order-1 lg:order-2 h-[260px] sm:h-[380px] md:h-[480px] lg:h-[600px] mx-auto w-full max-w-[320px] sm:max-w-none">
             {polaroids.map((polaroid, index) => (
               <Polaroid
                 key={index}
@@ -200,7 +200,7 @@ export const HeroSection = () => {
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 animate-fade-in"
               style={{ animationDelay: '0.5s' }}
             >
-              <div className="w-24 sm:w-32 md:w-40 lg:w-48 bg-white/95 backdrop-blur-sm rounded-2xl p-3 sm:p-4 shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <div className="w-20 sm:w-28 md:w-36 lg:w-48 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-3 md:p-4 shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer">
                 <img
                   src={mahaflowLogo}
                   alt="Mahaflow Logo"

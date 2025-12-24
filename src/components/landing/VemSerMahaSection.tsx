@@ -73,6 +73,9 @@ const matchCards = [
   { image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop', name: 'Marina', age: 28, interests: ['Trekking', 'Yoga'] },
   { image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop', name: 'Lucas', age: 32, interests: ['Rafting', 'Camping'] },
   { image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop', name: 'Julia', age: 25, interests: ['Trilhas', 'Meditação'] },
+  { image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=500&fit=crop', name: 'Rafael', age: 30, interests: ['Escalada', 'Surf'] },
+  { image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop', name: 'Camila', age: 27, interests: ['Canoagem', 'Fotografia'] },
+  { image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop', name: 'Pedro', age: 34, interests: ['MTB', 'Corrida'] },
 ];
 
 export const VemSerMahaSection = () => {
