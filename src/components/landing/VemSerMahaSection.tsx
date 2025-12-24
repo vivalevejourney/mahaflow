@@ -17,9 +17,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import grupoPico from '@/assets/mahaflow-grupo-pico.jpg';
-import conexao from '@/assets/mahaflow-conexao.jpg';
-import grupoTrilha from '@/assets/mahaflow-grupo-trilha.jpg';
 
 const benefitCategories = [
   {
@@ -73,9 +70,9 @@ const benefitCategories = [
 ];
 
 const matchCards = [
-  { image: grupoPico, name: 'Marina', age: 28, interests: ['Trekking', 'Yoga'] },
-  { image: conexao, name: 'Lucas', age: 32, interests: ['Rafting', 'Camping'] },
-  { image: grupoTrilha, name: 'Julia', age: 25, interests: ['Trilhas', 'Meditação'] },
+  { image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop', name: 'Marina', age: 28, interests: ['Trekking', 'Yoga'] },
+  { image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop', name: 'Lucas', age: 32, interests: ['Rafting', 'Camping'] },
+  { image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop', name: 'Julia', age: 25, interests: ['Trilhas', 'Meditação'] },
 ];
 
 export const VemSerMahaSection = () => {
