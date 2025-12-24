@@ -8,8 +8,7 @@ import { FounderSection } from '@/components/landing/FounderSection';
 import { Programacao2026Section } from '@/components/landing/Programacao2026Section';
 import { VideoSection } from '@/components/landing/VideoSection';
 import { HowToJoinSection } from '@/components/landing/HowToJoinSection';
-import { MahaVIPSection } from '@/components/landing/MahaVIPSection';
-import { MahaTinderSection } from '@/components/landing/MahaTinderSection';
+import { VemSerMahaSection } from '@/components/landing/VemSerMahaSection';
 import { MeetingsSection } from '@/components/landing/MeetingsSection';
 import { MyAccountSection } from '@/components/landing/MyAccountSection';
 import { ShopSection } from '@/components/landing/ShopSection';
@@ -29,7 +28,7 @@ const Index = () => {
         <Programacao2026Section />
         <VideoSection />
         <HowToJoinSection />
-        <MahaTinderSection />
+        <VemSerMahaSection />
         <MeetingsSection />
         <MyAccountSection />
         <ShopSection />
