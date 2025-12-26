@@ -57,7 +57,7 @@ export const Footer = () => {
                 <Instagram size={20} />
               </a>
               <a
-                href="https://wa.me/5522999999999"
+                href="https://wa.me/5522981602212"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-background/60 hover:text-background transition-colors"
@@ -144,8 +144,8 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone size={18} className="text-primary shrink-0" />
-                <a href="tel:+5522999999999" className="text-background/70 hover:text-background transition-colors">
-                  (22) 99999-9999
+                <a href="tel:+5522981602212" className="text-background/70 hover:text-background transition-colors">
+                  (22) 98160-2212
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm">
