@@ -227,14 +227,15 @@ export const VemSerMahaSection = () => {
         </div>
       </div>
 
-      {/* Benefits Section - Light */}
-      <div className="bg-background py-16 md:py-20">
-        <div className="container mx-auto px-4">
+      {/* Benefits Section - Premium Dark */}
+      <div className="section-dark py-16 md:py-20 relative overflow-hidden">
+        <div className="section-dark-overlay" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Tudo que você ganha sendo <span className="text-primary">MAHA</span>
             </h3>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 text-lg max-w-2xl mx-auto">
               Uma entrada, infinitas possibilidades. Veja o que te espera.
             </p>
           </div>
@@ -244,7 +245,7 @@ export const VemSerMahaSection = () => {
             {benefitCategories.map((category, index) => (
               <div
                 key={index}
-                className={`rounded-2xl p-6 ${category.bgColor} border ${category.borderColor} hover:scale-105 transition-transform duration-300`}
+                className="rounded-2xl p-6 bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300"
               >
                 <div className={`inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r ${category.color} rounded-full text-white text-xs font-bold mb-4`}>
                   <category.icon size={14} />
@@ -254,8 +255,8 @@ export const VemSerMahaSection = () => {
                 <ul className="space-y-3">
                   {category.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <item.icon size={18} className="text-foreground/70 mt-0.5 flex-shrink-0" />
-                      <span className="text-foreground text-sm font-medium">{item.text}</span>
+                      <item.icon size={18} className="text-white/60 mt-0.5 flex-shrink-0" />
+                      <span className="text-white/90 text-sm font-medium">{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -265,14 +266,13 @@ export const VemSerMahaSection = () => {
 
           {/* Bottom CTA */}
           <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-4">
-              <span className="text-foreground font-semibold">2026 será o ano MAHA.</span> Não fique de fora.
+            <p className="text-white/60 mb-4">
+              <span className="text-white font-semibold">2026 será o ano MAHA.</span> Não fique de fora.
             </p>
             <Link to="/cadastro">
               <Button
-                variant="outline"
                 size="lg"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 rounded-xl font-bold group"
+                className="bg-white text-primary hover:bg-white/90 px-8 py-6 rounded-xl font-bold group"
               >
                 <Sparkles className="mr-2" size={18} />
                 FAZER PARTE AGORA

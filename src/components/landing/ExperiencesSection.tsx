@@ -126,23 +126,23 @@ const difficultyColors = {
 
 export const ExperiencesSection = () => {
   return (
-    <section id="experiencias-passadas" className="section-padding relative overflow-hidden">
-      {/* Background gradiente nostálgico */}
-      <div className="absolute inset-0 bg-gradient-to-br from-muted/50 via-background to-muted/30" />
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-secondary/40 to-transparent rounded-full blur-3xl" />
+    <section id="experiencias-passadas" className="section-padding section-dark relative overflow-hidden">
+      {/* Background overlay premium */}
+      <div className="section-dark-overlay" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/10 to-transparent rounded-full blur-3xl" />
       
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <Badge className="mb-4 bg-muted text-muted-foreground border-border hover:bg-muted/80">
+          <Badge className="mb-4 bg-white/10 text-white/80 border-white/20 hover:bg-white/20">
             <Camera size={14} className="mr-1" />
             Memórias
           </Badge>
-          <h2 className="heading-2 text-foreground mt-4 mb-6">
+          <h2 className="heading-2 text-white mt-4 mb-6">
             Memórias Mahaflow
           </h2>
-          <p className="body-large text-muted-foreground">
+          <p className="body-large text-white/70">
             Relembre as aventuras incríveis que já vivemos juntos. Cada experiência é única 
             e transforma quem participa.
           </p>
@@ -153,7 +153,7 @@ export const ExperiencesSection = () => {
           {experiences.map((experience, index) => (
             <article
               key={experience.id}
-              className="group card-elevated overflow-hidden animate-fade-in-up bg-card/80 backdrop-blur-sm opacity-90 hover:opacity-100 transition-opacity"
+              className="group overflow-hidden animate-fade-in-up bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
@@ -180,7 +180,7 @@ export const ExperiencesSection = () => {
                 )}
 
                 {/* Realizada overlay */}
-                <div className="absolute bottom-4 left-4 bg-muted/90 text-muted-foreground rounded-lg px-3 py-1.5 text-sm font-medium">
+                <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-sm text-white/80 rounded-lg px-3 py-1.5 text-sm font-medium border border-white/10">
                   ✅ Realizada
                 </div>
               </div>
@@ -188,16 +188,16 @@ export const ExperiencesSection = () => {
               {/* Content */}
               <div className="p-5 space-y-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
                     {experience.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                  <p className="text-sm text-white/60 mt-1 line-clamp-2">
                     {experience.description}
                   </p>
                 </div>
 
                 {/* Meta */}
-                <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                <div className="flex flex-wrap gap-3 text-xs text-white/50">
                   <div className="flex items-center gap-1">
                     <MapPin size={14} className="text-primary" />
                     {experience.location}
@@ -230,7 +230,7 @@ export const ExperiencesSection = () => {
 
         {/* Bottom text */}
         <div className="text-center mt-12">
-          <p className="text-muted-foreground">
+          <p className="text-white/60">
             🌟 Essas são algumas das experiências que já marcaram nossa jornada. 
             <br />
             <span className="text-primary font-medium">
