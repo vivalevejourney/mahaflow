@@ -4,12 +4,16 @@ import { Button } from '@/components/ui/button';
 import videoExperiencia from '@/assets/mahaflow-video-experiencia.mp4';
 import videoCanoa from '@/assets/mahaflow-video-canoa.mp4';
 import videoMontanha from '@/assets/mahaflow-video-montanha.mp4';
+import posterGrupoTopo from '@/assets/mahaflow-grupo-topo.jpg';
+import posterCanoagem from '@/assets/mahaflow-canoagem.jpg';
+import posterMontanha from '@/assets/mahaflow-montanha-azul.jpg';
 
 interface VideoData {
   src: string;
   title: string;
   quote: string;
   description: string;
+  poster?: string;
 }
 
 interface VideoPlayerProps {
@@ -57,6 +61,7 @@ const VideoPlayer = ({ video, isMain = false }: VideoPlayerProps) => {
           <video
             ref={videoRef}
             src={video.src}
+            poster={video.poster}
             className="w-full h-full object-cover"
             muted={isMuted}
             loop={false}
@@ -124,18 +129,21 @@ export const VideoSection = () => {
       title: 'Experiências • Mahaflow',
       quote: 'Viva momentos únicos. Conecte-se com a natureza.',
       description: 'Cada aventura é uma oportunidade de transformação.',
+      poster: posterGrupoTopo,
     },
     {
       src: videoCanoa,
       title: 'Canoa Havaiana • Mahaflow',
       quote: 'Sinta a liberdade. Viva cada remada.',
       description: 'O mar nos ensina que juntos, remamos mais longe.',
+      poster: posterCanoagem,
     },
     {
       src: videoMontanha,
       title: 'Trekking • Mahaflow',
       quote: 'A montanha nos ensina: um passo de cada vez.',
       description: 'Conquiste o topo e descubra o que existe além das nuvens.',
+      poster: posterMontanha,
     },
   ];
 
