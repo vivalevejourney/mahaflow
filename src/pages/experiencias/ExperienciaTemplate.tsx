@@ -2,6 +2,7 @@ import { ArrowLeft, Calendar, MapPin, Clock, Users, CheckCircle, XCircle, Credit
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -481,10 +482,10 @@ const ExperienciaTemplate = () => {
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <Button className="w-full group" size="lg">
+                      <RainbowButton className="w-full text-base">
                         Reservar Vaga
                         <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                      </RainbowButton>
                     </a>
                   )}
                   
