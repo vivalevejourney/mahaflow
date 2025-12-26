@@ -118,7 +118,7 @@ const sponsors = [
 ];
 
 export const SponsorsSection = () => {
-  const whatsappLink = 'https://wa.me/5522999999999?text=Olá! Tenho interesse em ser parceiro da Mahaflow';
+  const whatsappLink = 'https://wa.me/5522981602212?text=Olá! Tenho interesse em ser parceiro da Mahaflow';
 
   return (
     <section id="patrocinadores" className="section-padding bg-gradient-to-br from-background via-secondary/30 to-background">

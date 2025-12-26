@@ -125,10 +125,10 @@ const avisosIniciais: Aviso[] = [
 ];
 
 const configuracoesIniciais: ConfiguracoesSite = {
-  telefone: '(22) 99999-9999',
+  telefone: '(22) 98160-2212',
   email: 'contato@mahaflow.com.br',
   instagram: '@mahaflow',
-  whatsapp: '5522999999999',
+  whatsapp: '5522981602212',
   endereco: 'Campos dos Goytacazes – RJ',
   inscricoesHabilitadas: true,
   exibirPrecos: true,
