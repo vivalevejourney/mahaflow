@@ -61,6 +61,7 @@ const VideoPlayer = ({ video, isMain = false }: VideoPlayerProps) => {
             muted={isMuted}
             loop={false}
             playsInline
+            preload="none"
             onEnded={handleVideoEnd}
           />
 

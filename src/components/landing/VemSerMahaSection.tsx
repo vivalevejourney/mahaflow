@@ -199,7 +199,7 @@ export const VemSerMahaSection = () => {
                     }}
                   >
                     <div className="aspect-[3/4] relative">
-                      <img src={card.image} alt={card.name} className="w-full h-full object-cover" />
+                      <img src={card.image} alt={card.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-3">
                         <h3 className="text-sm font-bold text-white">{card.name}, {card.age}</h3>
