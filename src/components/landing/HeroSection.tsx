@@ -106,8 +106,7 @@ export const HeroSection = () => {
           <Link to="/cadastro">
             <Button
               size="lg"
-              variant="outline"
-              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-lg px-8 py-6 rounded-xl w-full sm:w-auto backdrop-blur-sm"
+              className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-xl w-full sm:w-auto shadow-lg"
             >
               VEM SER MAHA!
             </Button>

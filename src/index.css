@@ -12,28 +12,28 @@
     /* Mahaflow Brand Colors */
     --forest: 120 61% 34%;           /* #228B22 - Verde floresta */
     --forest-dark: 120 61% 25%;      /* Verde floresta escuro */
-    --forest-light: 120 40% 96%;     /* #F0F8F5 - Verde claro natural */
-    --sage: 120 20% 85%;             /* Verde sage suave */
-    --earth: 30 20% 40%;             /* Marrom terra */
+    --forest-light: 120 10% 94%;     /* Verde claro natural mais neutro */
+    --sage: 120 15% 80%;             /* Verde sage mais profundo */
+    --earth: 30 20% 35%;             /* Marrom terra mais escuro */
     
-    /* Core Colors */
-    --background: 120 40% 99%;       /* Branco orgânico com toque verde */
-    --foreground: 0 0% 10%;          /* Preto suave */
+    /* Core Colors - Premium Escuro */
+    --background: 120 8% 96%;        /* Off-white com toque neutro */
+    --foreground: 0 0% 8%;           /* Preto mais profundo */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 120 5% 98%;              /* Cards mais neutros */
+    --card-foreground: 0 0% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 0 0% 8%;
 
     --primary: 120 61% 34%;          /* Verde floresta */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 40% 96%;        /* Verde claro natural */
-    --secondary-foreground: 120 61% 25%;
+    --secondary: 120 15% 92%;        /* Secundário mais profundo */
+    --secondary-foreground: 120 61% 20%;
 
-    --muted: 120 15% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 120 8% 88%;             /* Muted mais presente */
+    --muted-foreground: 0 0% 35%;
 
     --accent: 120 50% 40%;
     --accent-foreground: 0 0% 100%;
@@ -41,9 +41,13 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 120 20% 90%;
-    --input: 120 20% 90%;
+    --border: 120 10% 82%;           /* Bordas mais definidas */
+    --input: 120 10% 85%;
     --ring: 120 61% 34%;
+    
+    /* Section Dark - para alternância */
+    --section-dark-bg: 120 15% 8%;
+    --section-dark-card: 120 10% 12%;
 
     --radius: 0.75rem;
 
@@ -179,6 +183,18 @@
 
   .glass-dark {
     @apply bg-black/40 backdrop-blur-lg border border-white/10;
+  }
+  
+  /* Section Dark - Premium alternado */
+  .section-dark {
+    @apply relative;
+    background: linear-gradient(135deg, hsl(120 15% 8%) 0%, hsl(120 10% 10%) 50%, hsl(120 20% 12%) 100%);
+  }
+  
+  .section-dark-overlay {
+    @apply absolute inset-0 opacity-30;
+    background: radial-gradient(ellipse at 30% 20%, hsl(120 61% 34% / 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, hsl(120 50% 40% / 0.1) 0%, transparent 50%);
   }
 }
 

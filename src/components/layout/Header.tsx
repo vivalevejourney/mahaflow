@@ -24,10 +24,10 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled || !isHomePage
-          ? 'bg-background/98 backdrop-blur-lg shadow-soft border-b border-border/50'
-          : 'bg-gradient-to-b from-black/50 to-transparent'
+          ? 'bg-foreground/95 backdrop-blur-xl shadow-elevated border-b border-white/10'
+          : 'bg-gradient-to-b from-black/60 to-transparent'
       )}
     >
       <div className="container mx-auto px-4">
@@ -40,11 +40,8 @@ export const Header = () => {
               className="h-12 w-auto object-contain drop-shadow-lg"
             />
             <span
-              className={cn(
-                'text-xl font-bold tracking-tight transition-colors drop-shadow-lg',
-                isScrolled || !isHomePage ? 'text-foreground' : 'text-white'
-              )}
-              style={{ textShadow: isScrolled || !isHomePage ? 'none' : '0 2px 8px rgba(0,0,0,0.5)' }}
+              className="text-xl font-bold tracking-tight text-white drop-shadow-lg"
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}
             >
               Mahaflow
             </span>
@@ -56,13 +53,8 @@ export const Header = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className={cn(
-                  'text-sm font-semibold link-underline transition-colors',
-                  isScrolled || !isHomePage
-                    ? 'text-foreground/90 hover:text-foreground'
-                    : 'text-white hover:text-white'
-                )}
-                style={{ textShadow: isScrolled || !isHomePage ? 'none' : '0 2px 6px rgba(0,0,0,0.6)' }}
+                className="text-sm font-semibold link-underline transition-colors text-white/90 hover:text-white"
+                style={{ textShadow: '0 2px 6px rgba(0,0,0,0.4)' }}
               >
                 {item.label}
               </a>
@@ -74,18 +66,13 @@ export const Header = () => {
             <Link to="/login">
               <Button
                 variant="ghost"
-                className={cn(
-                  'transition-colors',
-                  isScrolled || !isHomePage
-                    ? 'text-foreground hover:bg-secondary'
-                    : 'text-white hover:bg-white/10'
-                )}
+                className="text-white/90 hover:text-white hover:bg-white/10 transition-colors"
               >
                 Entrar
               </Button>
             </Link>
             <Link to="/cadastro">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
                 VEM SER MAHA
               </Button>
             </Link>
@@ -94,12 +81,7 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn(
-              'md:hidden p-2 rounded-lg transition-colors',
-              isScrolled || !isHomePage
-                ? 'text-foreground hover:bg-secondary'
-                : 'text-white hover:bg-white/10'
-            )}
+            className="md:hidden p-2 rounded-lg transition-colors text-white hover:bg-white/10"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
