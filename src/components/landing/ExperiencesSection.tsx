@@ -161,6 +161,8 @@ export const ExperiencesSection = () => {
                 <img
                   src={experienceImages[experience.id] || experienceImages['rafting']}
                   alt={experience.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

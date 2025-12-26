@@ -58,6 +58,8 @@ export const ShopSection = () => {
                 <img
                   src={productImages[product.image] || product.image}
                   alt={product.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <Badge className="absolute top-3 left-3 bg-primary/10 text-primary border-primary/20 text-xs">

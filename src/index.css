@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Mahaflow Design System - Premium Eco-Tourism */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -303,12 +302,13 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-15px) rotate(2deg);
+    transform: translateY(-12px) rotate(1deg);
   }
 }
 
 .animate-float-gentle {
-  animation: float-gentle 8s ease-in-out infinite;
+  animation: float-gentle 10s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Remover marca d'água do Lovable */
