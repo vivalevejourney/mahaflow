@@ -1,124 +1,18 @@
-import { ArrowRight, Handshake, MessageCircle } from 'lucide-react';
+import { ArrowRight, Handshake, MessageCircle, Building2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Sponsor logos as SVG components with brand colors
-const sponsors = [
-  { 
-    id: 1, 
-    name: 'Natura', 
-    category: 'Bem-estar',
-    color: '#2E7D32',
-    hoverBg: 'hover:bg-green-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-2xl font-bold" fill="#2E7D32">
-          NATURA
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 2, 
-    name: 'North Face', 
-    category: 'Outdoor',
-    color: '#C62828',
-    hoverBg: 'hover:bg-red-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-lg font-black" fill="#C62828">
-          THE NORTH FACE
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 3, 
-    name: 'Patagonia', 
-    category: 'Ecoturismo',
-    color: '#1565C0',
-    hoverBg: 'hover:bg-blue-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-xl font-bold tracking-wider" fill="#1565C0">
-          PATAGONIA
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 4, 
-    name: 'REI', 
-    category: 'Equipamentos',
-    color: '#388E3C',
-    hoverBg: 'hover:bg-green-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-3xl font-black" fill="#388E3C">
-          REI
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 5, 
-    name: 'Decathlon', 
-    category: 'Esportes',
-    color: '#0277BD',
-    hoverBg: 'hover:bg-blue-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-xl font-bold" fill="#0277BD">
-          DECATHLON
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 6, 
-    name: 'Havaianas', 
-    category: 'Lifestyle',
-    color: '#F57F17',
-    hoverBg: 'hover:bg-amber-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-xl font-medium italic" fill="#F57F17">
-          Havaianas
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 7, 
-    name: 'Salomon', 
-    category: 'Trail Running',
-    color: '#B71C1C',
-    hoverBg: 'hover:bg-red-50',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-xl font-bold uppercase" fill="#B71C1C">
-          Salomon
-        </text>
-      </svg>
-    )
-  },
-  { 
-    id: 8, 
-    name: 'Oakley', 
-    category: 'Acessórios',
-    color: '#212121',
-    hoverBg: 'hover:bg-gray-100',
-    logo: (
-      <svg viewBox="0 0 120 40" className="w-full h-full">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" className="text-xl font-black uppercase" fill="#212121">
-          OAKLEY
-        </text>
-      </svg>
-    )
-  },
+// Placeholder slots para patrocinadores
+const sponsorSlots = [
+  { id: 1, category: 'Outdoor & Aventura' },
+  { id: 2, category: 'Bem-estar & Saúde' },
+  { id: 3, category: 'Equipamentos' },
+  { id: 4, category: 'Esportes' },
+  { id: 5, category: 'Lifestyle' },
+  { id: 6, category: 'Ecoturismo' },
 ];
 
 export const SponsorsSection = () => {
-  const whatsappLink = 'https://wa.me/5522981602212?text=Olá! Tenho interesse em ser parceiro da Mahaflow';
+  const whatsappLink = 'https://wa.me/5522981602212?text=Olá! Tenho interesse em ser patrocinador/parceiro da Mahaflow';
 
   return (
     <section id="patrocinadores" className="section-padding bg-gradient-to-br from-background via-secondary/30 to-background">
@@ -126,57 +20,57 @@ export const SponsorsSection = () => {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-medium text-sm uppercase tracking-wider">
-            Parceiros
+            Patrocinadores
           </span>
           <h2 className="heading-2 text-foreground mt-4 mb-6">
-            Marcas que acreditam na Mahaflow
+            Sua marca pode estar aqui
           </h2>
           <p className="body-large">
-            Empresas comprometidas com ecoturismo responsável, bem-estar e conexão com a natureza.
+            Estamos em busca de parceiros que acreditam em ecoturismo responsável, 
+            bem-estar e conexão com a natureza.
           </p>
         </div>
 
-        {/* Sponsors Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mb-20">
-          {sponsors.map((sponsor) => (
-            <div
-              key={sponsor.id}
-              className={`group aspect-[3/2] flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl bg-card border-2 border-border transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg ${sponsor.hoverBg}`}
-              style={{
-                ['--sponsor-color' as string]: sponsor.color,
-              }}
+        {/* Placeholder Slots Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-16">
+          {sponsorSlots.map((slot) => (
+            <a
+              key={slot.id}
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group aspect-[3/2] flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl bg-card/50 border-2 border-dashed border-border hover:border-primary/50 transition-all duration-300 cursor-pointer hover:bg-primary/5"
             >
-              <div 
-                className="w-full h-8 md:h-10 transition-transform duration-300 group-hover:scale-110"
-              >
-                {sponsor.logo}
+              <div className="w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+                <Building2 className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
-              <span 
-                className="text-xs mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 font-medium"
-                style={{ color: sponsor.color }}
-              >
-                {sponsor.category}
+              <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
+                {slot.category}
               </span>
-            </div>
+              <span className="text-xs text-muted-foreground/60 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                Disponível
+              </span>
+            </a>
           ))}
         </div>
 
-        {/* Seja Parceiro CTA */}
-        <div className="relative">
+        {/* Seja Patrocinador CTA */}
+        <div className="relative max-w-3xl mx-auto">
           <div className="absolute inset-0 bg-gradient-nature rounded-3xl opacity-50" />
           <div className="relative p-8 md:p-12 rounded-3xl border border-primary/20 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
-              <Handshake size={16} />
-              Oportunidade
+              <Sparkles size={16} />
+              Oportunidade Exclusiva
             </div>
             
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Quer ser parceiro da Mahaflow?
+              Quero ser um Patrocinador
             </h3>
             
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
               Conecte sua marca com uma comunidade apaixonada por natureza, 
-              bem-estar e experiências transformadoras. Vamos construir algo incrível juntos!
+              bem-estar e experiências transformadoras. Entre em contato e 
+              vamos construir algo incrível juntos!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -186,7 +80,7 @@ export const SponsorsSection = () => {
                   className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-xl group"
                 >
                   <MessageCircle size={20} className="mr-2" />
-                  Falar pelo WhatsApp
+                  Entre em Contato
                   <ArrowRight
                     size={16}
                     className="ml-2 group-hover:translate-x-1 transition-transform"
@@ -209,6 +103,12 @@ export const SponsorsSection = () => {
                 <div className="text-sm text-muted-foreground">Satisfação</div>
               </div>
             </div>
+
+            <p className="text-xs text-muted-foreground/70 mt-6">
+              <Handshake size={14} className="inline mr-1" />
+              Benefícios exclusivos para patrocinadores: visibilidade em eventos, 
+              redes sociais e muito mais.
+            </p>
           </div>
         </div>
       </div>
