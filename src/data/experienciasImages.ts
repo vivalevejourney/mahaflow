@@ -17,6 +17,24 @@ import caparaoGaleria1 from '@/assets/experiencias/carnaval-caparao/galeria-1.jp
 import namasteCapa from '@/assets/experiencias/dia-namaste/capa.png';
 import namasteGaleria1 from '@/assets/experiencias/dia-namaste/galeria-1.png';
 
+// Pico da Caledônia
+import caleCapa from '@/assets/experiencias/pico-caledonia/capa.jpg';
+import caleGaleria1 from '@/assets/experiencias/pico-caledonia/galeria-1.jpg';
+
+// Travessia Joatinga
+import joatingaCapa from '@/assets/experiencias/travessia-joatinga/capa.jpg';
+import joatingaGaleria1 from '@/assets/experiencias/travessia-joatinga/galeria-1.png';
+import joatingaGaleria2 from '@/assets/experiencias/travessia-joatinga/galeria-2.jpg';
+import joatingaGaleria3 from '@/assets/experiencias/travessia-joatinga/galeria-3.jpg';
+import joatingaGaleria4 from '@/assets/experiencias/travessia-joatinga/galeria-4.jpg';
+import joatingaVideo from '@/assets/experiencias/travessia-joatinga/video.mp4';
+
+// Semana Santa Macacu
+import semanaSantaCapa from '@/assets/experiencias/semana-santa-macacu/capa.jpg';
+
+// Rafting Sapucaia
+import raftingGaleria1 from '@/assets/experiencias/rafting-sapucaia/galeria-1.jpg';
+
 // Imagem padrão
 import defaultImage from '@/assets/mahaflow-grupo-trilha.jpg';
 
@@ -44,6 +62,23 @@ export const experienciasMedia: Record<string, ExperienciaMedia> = {
   'dia-namaste': {
     capa: namasteCapa,
     galeria: [namasteGaleria1],
+  },
+  'pico-caledonia': {
+    capa: caleCapa,
+    galeria: [caleGaleria1],
+  },
+  'travessia-joatinga': {
+    capa: joatingaCapa,
+    galeria: [joatingaGaleria1, joatingaGaleria2, joatingaGaleria3, joatingaGaleria4],
+    video: joatingaVideo,
+  },
+  'semana-santa-macacu': {
+    capa: semanaSantaCapa,
+    galeria: [],
+  },
+  'rafting-sapucaia': {
+    capa: defaultImage,
+    galeria: [raftingGaleria1],
   },
 };
 
