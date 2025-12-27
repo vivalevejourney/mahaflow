@@ -31,9 +31,13 @@ import joatingaVideo from '@/assets/experiencias/travessia-joatinga/video.mp4';
 
 // Semana Santa Macacu
 import semanaSantaCapa from '@/assets/experiencias/semana-santa-macacu/capa.jpg';
+import semanaSantaGaleria1 from '@/assets/experiencias/semana-santa-macacu/galeria-1.jpg';
 
 // Rafting Sapucaia
+import raftingCapa from '@/assets/experiencias/rafting-sapucaia/capa.jpg';
 import raftingGaleria1 from '@/assets/experiencias/rafting-sapucaia/galeria-1.jpg';
+import raftingGaleria2 from '@/assets/experiencias/rafting-sapucaia/galeria-2.jpg';
+import raftingVideo from '@/assets/experiencias/rafting-sapucaia/video.mp4';
 
 // Imagem padrão
 import defaultImage from '@/assets/mahaflow-grupo-trilha.jpg';
@@ -74,11 +78,12 @@ export const experienciasMedia: Record<string, ExperienciaMedia> = {
   },
   'semana-santa-macacu': {
     capa: semanaSantaCapa,
-    galeria: [],
+    galeria: [semanaSantaGaleria1],
   },
   'rafting-sapucaia': {
-    capa: defaultImage,
-    galeria: [raftingGaleria1],
+    capa: raftingCapa,
+    galeria: [raftingGaleria1, raftingGaleria2],
+    video: raftingVideo,
   },
 };
 
