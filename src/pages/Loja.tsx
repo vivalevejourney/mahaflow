@@ -124,8 +124,14 @@ const Loja = () => {
                   <img
                     src={getProductImage(product)}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-[40%]"
                   />
+                  {/* Em Breve Overlay */}
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <Badge className="bg-amber-500 text-white border-amber-600 text-lg px-6 py-2 font-semibold">
+                      Em Breve
+                    </Badge>
+                  </div>
                   <Badge className="absolute top-4 left-4 bg-primary/10 text-primary border-primary/20">
                     <Leaf size={12} className="mr-1" />
                     Sustentável
@@ -164,9 +170,8 @@ const Loja = () => {
                         ou 3x de {formatPrice(product.price / 3)}
                       </div>
                     </div>
-                    <Button onClick={() => addToCart(product.id)} className="group/btn">
-                      <ShoppingBag size={18} className="mr-2" />
-                      Comprar
+                    <Button variant="outline" disabled className="opacity-60 cursor-not-allowed">
+                      Em Breve
                     </Button>
                   </div>
                 </div>
