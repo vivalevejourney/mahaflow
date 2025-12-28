@@ -60,8 +60,14 @@ export const ShopSection = () => {
                   alt={product.name}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-[40%]"
                 />
+                {/* Em Breve Overlay */}
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <Badge className="bg-amber-500 text-white border-amber-600 text-sm px-4 py-1.5 font-semibold">
+                    Em Breve
+                  </Badge>
+                </div>
                 <Badge className="absolute top-3 left-3 bg-primary/10 text-primary border-primary/20 text-xs">
                   <Leaf size={12} className="mr-1" />
                   Sustentável
@@ -89,9 +95,8 @@ export const ShopSection = () => {
                   <div className="text-lg font-bold text-foreground">
                     {formatPrice(product.price)}
                   </div>
-                  <Button size="sm" className="group/btn text-xs px-3">
-                    <ShoppingBag size={14} className="mr-1" />
-                    Comprar
+                  <Button size="sm" variant="outline" disabled className="text-xs px-3 opacity-60 cursor-not-allowed">
+                    Em Breve
                   </Button>
                 </div>
               </div>
