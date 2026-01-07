@@ -26,8 +26,8 @@ export const Header = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled || !isHomePage
-          ? 'bg-foreground/95 backdrop-blur-xl shadow-elevated border-b border-white/10'
-          : 'bg-gradient-to-b from-black/60 to-transparent'
+          ? 'bg-foreground/80 backdrop-blur-xl shadow-elevated border-b border-white/10'
+          : 'bg-gradient-to-b from-black/40 to-transparent'
       )}
     >
       <div className="container mx-auto px-4">
