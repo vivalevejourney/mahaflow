@@ -127,19 +127,28 @@ export const VemSerMahaSection = () => {
                 <div className="mt-6">
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-background/60 text-2xl">R$</span>
-                    <span className="text-7xl md:text-8xl font-black text-background">20</span>
-                    <span className="text-background text-3xl font-bold">,00</span>
+                    <span className="text-7xl md:text-8xl font-black text-background">34</span>
+                    <span className="text-background text-3xl font-bold">,90</span>
                   </div>
-                  <p className="text-primary text-lg mt-1 font-bold">VALOR ÚNICO</p>
+                  
+                  {/* Destaque Pagamento Único */}
+                  <div className="mt-3 inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-500/20 rounded-full border border-emerald-500/40">
+                    <span className="text-emerald-400 text-base md:text-lg font-black uppercase tracking-wide">
+                      ✨ Pagamento Único • Sem Mensalidade ✨
+                    </span>
+                  </div>
+                  <p className="text-background/60 text-sm mt-2">
+                    Pague uma vez e faça parte da comunidade para sempre!
+                  </p>
                 </div>
                 
                 {/* Highlight - Shaker */}
-                <div className="mt-6 py-4 px-6 bg-background/10 rounded-2xl border border-background/10">
-                  <p className="text-background text-lg font-medium">
-                    🎁 <span className="text-primary font-bold">Garrafa Shaker</span> personalizada
+                <div className="mt-6 py-5 px-6 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl border border-primary/30">
+                  <p className="text-background text-lg font-bold">
+                    🎁 <span className="text-primary">Garrafa Shaker</span> personalizada inclusa!
                   </p>
-                  <p className="text-background/60 text-sm mt-1">
-                    + Todos os benefícios VIP da comunidade
+                  <p className="text-background/70 text-sm mt-2">
+                    + Acesso <span className="text-primary font-semibold">vitalício</span> a todos os benefícios VIP
                   </p>
                 </div>
 
