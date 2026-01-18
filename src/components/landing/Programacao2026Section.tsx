@@ -92,6 +92,12 @@ export const Programacao2026Section = () => {
   const programacoesPorMes = getProgramacoesPorMes();
   const mesesOrdenados = Object.keys(programacoesPorMes);
 
+  // Encontrar a próxima experiência (primeira que ainda não passou)
+  const proximaExperiencia = programacoes2026.find(prog => {
+    const data = parseISO(prog.dataISO);
+    return !isPast(data) || isToday(data);
+  });
+
   return (
     <section id="calendario" className="section-padding relative overflow-hidden">
       {/* Background gradiente premium */}
@@ -164,9 +170,21 @@ export const Programacao2026Section = () => {
                   return (
                     <article
                       key={prog.id}
-                      className={`group relative overflow-hidden rounded-2xl border border-border/50 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 ${countdown.passada ? 'opacity-70' : ''}`}
+                      className={`group relative overflow-hidden rounded-2xl border transition-all duration-500 hover:shadow-2xl ${
+                        prog.id === proximaExperiencia?.id 
+                          ? 'border-amber-400/60 ring-2 ring-amber-400/40 shadow-xl shadow-amber-500/20' 
+                          : 'border-border/50 hover:border-primary/40 hover:shadow-primary/10'
+                      } ${countdown.passada ? 'opacity-70' : ''}`}
                       style={{ animationDelay: `${(mesIndex * 0.1) + (index * 0.05)}s` }}
                     >
+                      {/* Badge PRÓXIMA EXPERIÊNCIA */}
+                      {prog.id === proximaExperiencia?.id && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                          <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/30 px-4 py-1.5 text-sm font-bold animate-pulse whitespace-nowrap">
+                            ⭐ PRÓXIMA EXPERIÊNCIA
+                          </Badge>
+                        </div>
+                      )}
                       {/* Imagem de Capa */}
                       <div className="relative aspect-[16/10] overflow-hidden">
                         <img 
