@@ -294,11 +294,17 @@ export const Programacao2026Section = () => {
                         </div>
                       )}
                       {/* Imagem de Capa */}
-                      <div className="relative aspect-[16/10] overflow-hidden">
+                      <div className={`relative overflow-hidden ${
+                        prog.id === proximaExperiencia?.id 
+                          ? 'aspect-[4/3] md:aspect-[16/10]' 
+                          : 'aspect-[4/3] md:aspect-[16/10]'
+                      }`}>
                         <img 
                           src={media.capa} 
                           alt={prog.nome}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${
+                            prog.slug === 'cachoeira-bicuda' ? 'object-[center_30%]' : ''
+                          }`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         
