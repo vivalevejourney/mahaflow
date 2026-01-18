@@ -41,6 +41,8 @@ import raftingVideo from '@/assets/experiencias/rafting-sapucaia/video.mp4';
 
 // Cachoeira Bicuda Grande
 import bicudaCapa from '@/assets/experiencias/cachoeira-bicuda/capa.png';
+import bicudaGaleria1 from '@/assets/experiencias/cachoeira-bicuda/galeria-1.jpg';
+import bicudaVideo from '@/assets/experiencias/cachoeira-bicuda/video.mp4';
 
 // Imagem padrão
 import defaultImage from '@/assets/mahaflow-grupo-trilha.jpg';
@@ -90,7 +92,8 @@ export const experienciasMedia: Record<string, ExperienciaMedia> = {
   },
   'cachoeira-bicuda': {
     capa: bicudaCapa,
-    galeria: [],
+    galeria: [bicudaGaleria1],
+    video: bicudaVideo,
   },
 };
 

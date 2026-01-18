@@ -1,10 +1,12 @@
-import { ArrowRight, Calendar, MapPin, Users, Clock, Sparkles, CheckCircle2, Shield, Camera } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Users, Clock, Sparkles, CheckCircle2, Shield, Camera, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { programacoes2026, getCategoriaLabel, getCategoriaColor, getProgramacoesPorMes } from '@/data/programacao2026';
 import { getExperienciaMedia } from '@/data/experienciasImages';
 import { differenceInDays, parseISO, isToday, isTomorrow, isPast } from 'date-fns';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { useState } from 'react';
 
 // Função para calcular e formatar dias restantes com mensagens aprimoradas
 const getCountdownInfo = (dataISO: string) => {
@@ -91,12 +93,17 @@ const getCountdownInfo = (dataISO: string) => {
 export const Programacao2026Section = () => {
   const programacoesPorMes = getProgramacoesPorMes();
   const mesesOrdenados = Object.keys(programacoesPorMes);
+  const [expandedPast, setExpandedPast] = useState<Record<string, boolean>>({});
 
   // Encontrar a próxima experiência (primeira que ainda não passou)
   const proximaExperiencia = programacoes2026.find(prog => {
     const data = parseISO(prog.dataISO);
     return !isPast(data) || isToday(data);
   });
+
+  const toggleExpanded = (id: string) => {
+    setExpandedPast(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <section id="calendario" className="section-padding relative overflow-hidden">
@@ -166,7 +173,108 @@ export const Programacao2026Section = () => {
                 {programacoesPorMes[mes].map((prog, index) => {
                   const countdown = getCountdownInfo(prog.dataISO);
                   const media = getExperienciaMedia(prog.slug);
+                  const isExpanded = expandedPast[prog.id] || false;
                   
+                  // Experiência já realizada - layout compacto e retrátil
+                  if (countdown.passada) {
+                    return (
+                      <Collapsible
+                        key={prog.id}
+                        open={isExpanded}
+                        onOpenChange={() => toggleExpanded(prog.id)}
+                        className="col-span-1"
+                      >
+                        <div className="rounded-2xl border border-border/30 bg-muted/20 overflow-hidden">
+                          {/* Header compacto - sempre visível */}
+                          <CollapsibleTrigger className="w-full">
+                            <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors cursor-pointer">
+                              <div className="flex items-center gap-3 flex-1 min-w-0">
+                                <Badge className="bg-muted/80 text-muted-foreground shrink-0 text-xs">
+                                  ✅ Realizada
+                                </Badge>
+                                <span className="font-medium text-muted-foreground truncate">
+                                  {prog.nome}
+                                </span>
+                                <span className="text-sm text-muted-foreground/60 hidden sm:inline shrink-0">
+                                  {prog.data}
+                                </span>
+                              </div>
+                              <ChevronDown 
+                                size={20} 
+                                className={`text-muted-foreground transition-transform duration-200 shrink-0 ml-2 ${isExpanded ? 'rotate-180' : ''}`} 
+                              />
+                            </div>
+                          </CollapsibleTrigger>
+                          
+                          {/* Conteúdo expandido */}
+                          <CollapsibleContent>
+                            <div className="border-t border-border/30">
+                              {/* Imagem de Capa */}
+                              <div className="relative aspect-[16/10] overflow-hidden">
+                                <img 
+                                  src={media.capa} 
+                                  alt={prog.nome}
+                                  className="w-full h-full object-cover grayscale-[30%]"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                                
+                                {/* Badges no topo da imagem */}
+                                <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
+                                  <Badge className={`${getCategoriaColor(prog.categoria)} shrink-0`}>
+                                    {getCategoriaLabel(prog.categoria)}
+                                  </Badge>
+                                  
+                                  {/* Indicador de Galeria ou Vídeo */}
+                                  <div className="flex items-center gap-2">
+                                    {media.video && (
+                                      <div className="flex items-center gap-1.5 bg-red-500/90 text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                                        🎬 Vídeo
+                                      </div>
+                                    )}
+                                    {media.galeria && media.galeria.length > 0 && (
+                                      <div className="flex items-center gap-1.5 bg-black/70 text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                                        <Camera size={12} />
+                                        {media.galeria.length} fotos
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Content */}
+                              <div className="p-4 space-y-3">
+                                <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                                  <MapPin size={14} className="text-primary shrink-0" />
+                                  Saída: {prog.localPartida}
+                                </div>
+                                
+                                <div className="flex items-center justify-between">
+                                  <p className="text-lg font-bold text-muted-foreground">{prog.valorFormatado}</p>
+                                </div>
+
+                                {/* CTA */}
+                                <Link to={`/experiencias/${prog.slug}`} className="block">
+                                  <Button 
+                                    className="w-full group/btn font-semibold" 
+                                    size="sm"
+                                    variant="outline"
+                                  >
+                                    Ver Galeria
+                                    <ArrowRight
+                                      size={16}
+                                      className="ml-2 group-hover/btn:translate-x-1 transition-transform"
+                                    />
+                                  </Button>
+                                </Link>
+                              </div>
+                            </div>
+                          </CollapsibleContent>
+                        </div>
+                      </Collapsible>
+                    );
+                  }
+
+                  // Experiência futura - layout completo
                   return (
                     <article
                       key={prog.id}
@@ -174,7 +282,7 @@ export const Programacao2026Section = () => {
                         prog.id === proximaExperiencia?.id 
                           ? 'border-amber-400/60 ring-2 ring-amber-400/40 shadow-xl shadow-amber-500/20' 
                           : 'border-border/50 hover:border-primary/40 hover:shadow-primary/10'
-                      } ${countdown.passada ? 'opacity-70' : ''}`}
+                      }`}
                       style={{ animationDelay: `${(mesIndex * 0.1) + (index * 0.05)}s` }}
                     >
                       {/* Badge PRÓXIMA EXPERIÊNCIA */}
@@ -299,7 +407,7 @@ export const Programacao2026Section = () => {
                               <p className="text-lg font-semibold text-muted-foreground">{prog.valorFormatado}</p>
                             )}
                           </div>
-                          {prog.vagas?.limite && !countdown.passada && (
+                          {prog.vagas?.limite && (
                             <Badge variant="outline" className="text-orange-600 border-orange-200 bg-orange-50">
                               <Users size={12} className="mr-1" />
                               {prog.vagas.limite} vagas
@@ -312,9 +420,8 @@ export const Programacao2026Section = () => {
                           <Button 
                             className="w-full group/btn font-semibold" 
                             size="lg"
-                            variant={countdown.passada ? "outline" : "default"}
                           >
-                            {countdown.passada ? 'Ver Galeria' : 'Detalhes / Reservar'}
+                            Detalhes / Reservar
                             <ArrowRight
                               size={18}
                               className="ml-2 group-hover/btn:translate-x-1 transition-transform"
@@ -324,7 +431,7 @@ export const Programacao2026Section = () => {
                       </div>
 
                       {/* Urgência badge para últimas vagas */}
-                      {countdown.urgente && !countdown.passada && (
+                      {countdown.urgente && (
                         <div className="absolute -top-1 -right-1">
                           <span className="flex h-6 w-6">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>

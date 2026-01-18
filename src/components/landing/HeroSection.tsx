@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ImagesSlider } from '@/components/ui/images-slider';
@@ -87,6 +88,32 @@ export const HeroSection = () => {
         >
           Ecoturismo, trilhas, rafting e experiências que unem corpo, mente e pessoas.
         </motion.p>
+
+        {/* CTA Próxima Experiência */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.55 }}
+          className="mb-6"
+        >
+          <Link to="/experiencias/cachoeira-bicuda">
+            <div className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm rounded-full border border-amber-500/40 hover:border-amber-400 transition-all hover:shadow-lg hover:shadow-amber-500/20">
+              <span className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </span>
+                <span className="text-amber-300 font-bold text-xs sm:text-sm uppercase">Próxima:</span>
+              </span>
+              <span className="text-white font-semibold text-sm sm:text-base">Cachoeira da Bicuda Grande</span>
+              <span className="text-white/60 text-xs sm:text-sm hidden sm:inline">31/01</span>
+              <Badge className="bg-red-500/90 text-white text-[10px] sm:text-xs px-2 py-0.5 animate-pulse">
+                Poucas vagas!
+              </Badge>
+              <ArrowRight size={16} className="text-amber-400 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
