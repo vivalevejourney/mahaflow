@@ -37,7 +37,7 @@ export const Header = () => {
             <img
               src={mahaflowLogo}
               alt="Mahaflow"
-              className="h-12 w-auto object-contain drop-shadow-lg"
+              className="h-12 w-auto object-contain drop-shadow-lg brightness-0 invert"
             />
             <span
               className="text-xl font-bold tracking-tight text-white drop-shadow-lg"
