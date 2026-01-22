@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
 
 // Types
 export interface Viagem {
@@ -135,15 +135,64 @@ const configuracoesIniciais: ConfiguracoesSite = {
   modoManutencao: false,
 };
 
+// Session timeout duration (30 minutes)
+const SESSION_TIMEOUT = 30 * 60 * 1000;
+
 export const GestorProvider = ({ children }: { children: ReactNode }) => {
   const [viagens, setViagens] = useState<Viagem[]>(viagensIniciais);
   const [avisos, setAvisos] = useState<Aviso[]>(avisosIniciais);
   const [configuracoes, setConfiguracoes] = useState<ConfiguracoesSite>(configuracoesIniciais);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auth functions
+  // Reset session timeout on activity
+  const resetSessionTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (isAuthenticated) {
+      timeoutRef.current = setTimeout(() => {
+        logout();
+        // Toast notification would be added here with backend integration
+      }, SESSION_TIMEOUT);
+    }
+  };
+
+  // Set up activity listeners for session timeout
+  useEffect(() => {
+    if (isAuthenticated) {
+      resetSessionTimeout();
+      
+      const handleActivity = () => resetSessionTimeout();
+      
+      window.addEventListener('mousemove', handleActivity);
+      window.addEventListener('keydown', handleActivity);
+      window.addEventListener('click', handleActivity);
+      
+      return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        window.removeEventListener('mousemove', handleActivity);
+        window.removeEventListener('keydown', handleActivity);
+        window.removeEventListener('click', handleActivity);
+      };
+    }
+  }, [isAuthenticated]);
+
+  /**
+   * SECURITY WARNING: This is a mock authentication for demo purposes only.
+   * 
+   * In production, you MUST:
+   * 1. Implement proper backend authentication (e.g., Supabase Auth)
+   * 2. Store credentials securely in a database with proper hashing
+   * 3. Use secure session management with HTTP-only cookies or JWT tokens
+   * 4. Never expose credentials in client-side code
+   * 5. Implement rate limiting to prevent brute force attacks
+   */
   const login = (email: string, senha: string): boolean => {
-    // Mock login - será substituído por Supabase
+    // TODO: Replace with Supabase Auth or other secure backend authentication
+    // This mock login is for demonstration only and is NOT secure
     if (email === 'gestor@mahaflow.com' && senha === 'admin123') {
       setIsAuthenticated(true);
       return true;
@@ -153,6 +202,10 @@ export const GestorProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     setIsAuthenticated(false);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
   };
 
   // Viagens functions

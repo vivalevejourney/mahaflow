@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useGestor } from '@/contexts/GestorContext';
+import { loginSchema } from '@/lib/validation';
 import rotafacilLogo from '@/assets/rotafacil-logo.png';
 
 const GestorLogin = () => {
@@ -13,12 +14,30 @@ const GestorLogin = () => {
   const [senha, setSenha] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const { login } = useGestor();
   const { toast } = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    // Validate with zod schema
+    const result = loginSchema.safeParse({ email, password: senha });
+    
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+    
     setIsLoading(true);
 
     // Simulate network delay
@@ -74,13 +93,17 @@ const GestorLogin = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="gestor@mahaflow.com"
+                  placeholder="seu@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
+                  className={`pl-10 ${errors.email ? 'border-destructive' : ''}`}
+                  maxLength={255}
                   required
                 />
               </div>
+              {errors.email && (
+                <p className="text-sm text-destructive">{errors.email}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -95,7 +118,8 @@ const GestorLogin = () => {
                   placeholder="••••••••"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
-                  className="pl-10 pr-10"
+                  className={`pl-10 pr-10 ${errors.password ? 'border-destructive' : ''}`}
+                  maxLength={128}
                   required
                 />
                 <button
@@ -106,6 +130,9 @@ const GestorLogin = () => {
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-sm text-destructive">{errors.password}</p>
+              )}
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
@@ -145,13 +172,10 @@ const GestorLogin = () => {
           </div>
         </div>
 
-        {/* Test credentials hint */}
+        {/* Security notice */}
         <div className="mt-6 p-4 rounded-xl bg-muted/50 border border-border text-center">
-          <p className="text-xs text-muted-foreground mb-2">
-            Credenciais de teste:
-          </p>
-          <p className="text-sm font-mono text-foreground">
-            gestor@mahaflow.com / admin123
+          <p className="text-xs text-muted-foreground">
+            Acesso restrito a organizadores autorizados.
           </p>
         </div>
       </div>
