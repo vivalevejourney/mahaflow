@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GestorProvider } from "@/contexts/GestorContext";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 // Eager load - main page
 import Index from "./pages/Index";
@@ -44,7 +45,11 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/gestor" element={<GestorDashboard />} />
+              <Route path="/gestor" element={
+                <ProtectedRoute>
+                  <GestorDashboard />
+                </ProtectedRoute>
+              } />
               <Route path="/gestor-login" element={<GestorLogin />} />
               <Route path="/feed" element={<Feed />} />
               <Route path="/mahatinder" element={<MahaTinder />} />

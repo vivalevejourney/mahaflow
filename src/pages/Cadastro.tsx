@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { registrationSchema } from '@/lib/validation';
 import heroImage from '@/assets/mahaflow-flutuacao.jpg';
 import mahaflowLogo from '@/assets/mahaflow-logo-new.png';
 
@@ -34,6 +35,7 @@ const Cadastro = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
 
   const toggleInterest = (interest: string) => {
@@ -46,11 +48,23 @@ const Cadastro = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
     
-    if (formData.password !== formData.confirmPassword) {
+    // Validate with zod schema
+    const result = registrationSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
       toast({
-        title: 'Erro',
-        description: 'As senhas não coincidem.',
+        title: 'Erro de validação',
+        description: 'Por favor, corrija os campos destacados.',
         variant: 'destructive',
       });
       return;
@@ -76,7 +90,6 @@ const Cadastro = () => {
       });
     }, 1500);
   };
-
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Form */}
@@ -133,10 +146,14 @@ const Cadastro = () => {
                   placeholder="Seu nome"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="pl-10"
+                  className={`pl-10 ${errors.name ? 'border-destructive' : ''}`}
+                  maxLength={100}
                   required
                 />
               </div>
+              {errors.name && (
+                <p className="text-sm text-destructive">{errors.name}</p>
+              )}
             </div>
 
             {/* Email */}
@@ -150,10 +167,14 @@ const Cadastro = () => {
                   placeholder="seu@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="pl-10"
+                  className={`pl-10 ${errors.email ? 'border-destructive' : ''}`}
+                  maxLength={255}
                   required
                 />
               </div>
+              {errors.email && (
+                <p className="text-sm text-destructive">{errors.email}</p>
+              )}
             </div>
 
             {/* Password */}
@@ -167,8 +188,9 @@ const Cadastro = () => {
                   placeholder="Mínimo 8 caracteres"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="pl-10 pr-10"
+                  className={`pl-10 pr-10 ${errors.password ? 'border-destructive' : ''}`}
                   minLength={8}
+                  maxLength={128}
                   required
                 />
                 <button
@@ -179,6 +201,9 @@ const Cadastro = () => {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-sm text-destructive">{errors.password}</p>
+              )}
             </div>
 
             {/* Confirm Password */}
@@ -192,10 +217,14 @@ const Cadastro = () => {
                   placeholder="Digite a senha novamente"
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                  className="pl-10"
+                  className={`pl-10 ${errors.confirmPassword ? 'border-destructive' : ''}`}
+                  maxLength={128}
                   required
                 />
               </div>
+              {errors.confirmPassword && (
+                <p className="text-sm text-destructive">{errors.confirmPassword}</p>
+              )}
             </div>
 
             {/* Interests */}
