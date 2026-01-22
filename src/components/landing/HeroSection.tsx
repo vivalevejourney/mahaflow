@@ -52,7 +52,7 @@ export const HeroSection = () => {
           <img
             src={mahaflowLogo}
             alt="Mahaflow Logo"
-            className="w-32 sm:w-40 md:w-48 h-auto drop-shadow-2xl"
+            className="w-32 sm:w-40 md:w-48 h-auto drop-shadow-2xl brightness-0 invert"
           />
         </motion.div>
 
