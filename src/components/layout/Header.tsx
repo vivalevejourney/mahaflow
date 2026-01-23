@@ -4,7 +4,7 @@ import { Menu, X, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { navItems } from '@/data/mockData';
 import { cn } from '@/lib/utils';
-import mahaflowLogo from '@/assets/mahaflow-logo-white.png';
+import mahaflowLogo from '@/assets/mahaflow-logo-new.png';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,12 +33,18 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center hover-lift">
+          <Link to="/" className="flex items-center gap-3 hover-lift">
             <img
               src={mahaflowLogo}
               alt="Mahaflow"
-              className="h-14 w-auto object-contain drop-shadow-lg"
+              className="h-12 w-auto object-contain drop-shadow-lg brightness-0 invert"
             />
+            <span
+              className="text-xl font-bold tracking-tight text-white drop-shadow-lg"
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}
+            >
+              Mahaflow
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
