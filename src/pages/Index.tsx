@@ -19,7 +19,7 @@ const BlogSection = lazy(() => import('@/components/landing/BlogSection').then(m
 const ExperiencesSection = lazy(() => import('@/components/landing/ExperiencesSection').then(m => ({ default: m.ExperiencesSection })));
 const SponsorsSection = lazy(() => import('@/components/landing/SponsorsSection').then(m => ({ default: m.SponsorsSection })));
 
-// Minimal loading placeholder
+// Minimal loading placeholder - optimized for lazy loading
 const SectionLoader = () => (
   <div className="min-h-[200px] flex items-center justify-center">
     <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
