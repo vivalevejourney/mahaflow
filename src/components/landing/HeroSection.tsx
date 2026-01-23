@@ -11,7 +11,7 @@ import trekkingAltitude from '@/assets/mahaflow-trekking-altitude.jpg';
 import cachoeiraGrupo from '@/assets/mahaflow-cachoeira-grupo.jpg';
 import raftingAction from '@/assets/mahaflow-rafting-action.jpg';
 import viaLactea from '@/assets/mahaflow-via-lactea.jpg';
-import mahaflowLogo from '@/assets/mahaflow-logo-hero.png';
+import mahaflowLogo from '@/assets/mahaflow-logo-white.png';
 
 export const HeroSection = () => {
   const scrollToExperiences = () => {
@@ -52,7 +52,7 @@ export const HeroSection = () => {
           <img
             src={mahaflowLogo}
             alt="Mahaflow Logo"
-            className="w-36 sm:w-44 md:w-52 h-auto drop-shadow-2xl brightness-0 invert"
+            className="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl"
           />
         </motion.div>
 
