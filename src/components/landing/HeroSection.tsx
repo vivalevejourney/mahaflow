@@ -40,19 +40,19 @@ export const HeroSection = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="z-50 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto"
+        className="z-50 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto pt-24 sm:pt-28 md:pt-32"
       >
         {/* Logo */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6"
+          className="mb-4 sm:mb-6"
         >
           <img
             src={mahaflowLogo}
             alt="Mahaflow Logo"
-            className="w-48 sm:w-56 md:w-72 h-auto drop-shadow-2xl"
+            className="w-36 sm:w-44 md:w-56 lg:w-64 h-auto drop-shadow-2xl"
           />
         </motion.div>
 
