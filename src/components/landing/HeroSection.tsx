@@ -47,12 +47,12 @@ export const HeroSection = () => {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6"
+          className="mb-6 mt-24 sm:mt-28"
         >
           <img
             src={mahaflowLogo}
             alt="Mahaflow Logo"
-            className="w-32 sm:w-40 md:w-48 h-auto drop-shadow-2xl brightness-0 invert"
+            className="w-36 sm:w-44 md:w-52 h-auto drop-shadow-2xl brightness-0 invert"
           />
         </motion.div>
 
