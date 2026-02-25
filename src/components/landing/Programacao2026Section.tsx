@@ -1,12 +1,13 @@
-import { ArrowRight, Calendar, MapPin, Users, Clock, Sparkles, CheckCircle2, Shield, Camera, ChevronDown } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Users, Clock, Sparkles, CheckCircle2, Shield, Camera, ChevronDown, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { programacoes2026, getCategoriaLabel, getCategoriaColor, getProgramacoesPorMes } from '@/data/programacao2026';
+import { programacoes2026, getCategoriaLabel, getCategoriaColor, getProgramacoesPorMes, WHATSAPP_NUMBER } from '@/data/programacao2026';
 import { getExperienciaMedia } from '@/data/experienciasImages';
 import { differenceInDays, parseISO, isToday, isTomorrow, isPast } from 'date-fns';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useState } from 'react';
+import { ShareButtons } from '@/components/landing/ShareButtons';
 
 // Função para calcular e formatar dias restantes com mensagens aprimoradas
 const getCountdownInfo = (dataISO: string) => {
@@ -252,20 +253,23 @@ export const Programacao2026Section = () => {
                                   <p className="text-lg font-bold text-muted-foreground">{prog.valorFormatado}</p>
                                 </div>
 
-                                {/* CTA */}
-                                <Link to={`/experiencias/${prog.slug}`} className="block">
-                                  <Button 
-                                    className="w-full group/btn font-semibold" 
-                                    size="sm"
-                                    variant="outline"
-                                  >
-                                    Ver Galeria
-                                    <ArrowRight
-                                      size={16}
-                                      className="ml-2 group-hover/btn:translate-x-1 transition-transform"
-                                    />
-                                  </Button>
-                                </Link>
+                                {/* CTA + Share */}
+                                <div className="flex items-center justify-between">
+                                  <Link to={`/experiencias/${prog.slug}`} className="flex-1 mr-2">
+                                    <Button 
+                                      className="w-full group/btn font-semibold" 
+                                      size="sm"
+                                      variant="outline"
+                                    >
+                                      Ver Galeria
+                                      <ArrowRight
+                                        size={16}
+                                        className="ml-2 group-hover/btn:translate-x-1 transition-transform"
+                                      />
+                                    </Button>
+                                  </Link>
+                                  <ShareButtons nome={prog.nome} data={prog.data} valorFormatado={prog.valorFormatado} slug={prog.slug} />
+                                </div>
                               </div>
                             </div>
                           </CollapsibleContent>
@@ -286,10 +290,18 @@ export const Programacao2026Section = () => {
                       style={{ animationDelay: `${(mesIndex * 0.1) + (index * 0.05)}s` }}
                     >
                       {/* Badge PRÓXIMA EXPERIÊNCIA */}
-                      {prog.id === proximaExperiencia?.id && (
+                      {prog.id === proximaExperiencia?.id && !prog.emBreve && (
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
                           <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/30 px-4 py-1.5 text-sm font-bold animate-pulse whitespace-nowrap">
                             ⭐ PRÓXIMA EXPERIÊNCIA
+                          </Badge>
+                        </div>
+                      )}
+                      {/* Badge EM BREVE */}
+                      {prog.emBreve && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                          <Badge className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-500/30 px-5 py-2 text-sm font-bold whitespace-nowrap">
+                            🔜 EM BREVE
                           </Badge>
                         </div>
                       )}
@@ -421,19 +433,43 @@ export const Programacao2026Section = () => {
                           )}
                         </div>
 
-                        {/* CTA */}
-                        <Link to={`/experiencias/${prog.slug}`} className="block pt-2">
-                          <Button 
-                            className="w-full group/btn font-semibold" 
-                            size="lg"
-                          >
-                            Detalhes / Reservar
-                            <ArrowRight
-                              size={18}
-                              className="ml-2 group-hover/btn:translate-x-1 transition-transform"
-                            />
-                          </Button>
-                        </Link>
+                        {/* CTA + Share */}
+                        {prog.emBreve ? (
+                          <div className="pt-2 space-y-2">
+                            <a
+                              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Tenho interesse na experiência de ${prog.nome} e quero ser avisado quando abrir as inscrições! 🌿`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block"
+                            >
+                              <Button className="w-full group/btn font-semibold bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white" size="lg">
+                                <Bell size={18} className="mr-2" />
+                                Quero ser avisado
+                              </Button>
+                            </a>
+                            <div className="flex justify-center">
+                              <ShareButtons nome={prog.nome} data={prog.data} valorFormatado={prog.valorFormatado} slug={prog.slug} />
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="pt-2 space-y-2">
+                            <Link to={`/experiencias/${prog.slug}`} className="block">
+                              <Button 
+                                className="w-full group/btn font-semibold" 
+                                size="lg"
+                              >
+                                Detalhes / Reservar
+                                <ArrowRight
+                                  size={18}
+                                  className="ml-2 group-hover/btn:translate-x-1 transition-transform"
+                                />
+                              </Button>
+                            </Link>
+                            <div className="flex justify-center">
+                              <ShareButtons nome={prog.nome} data={prog.data} valorFormatado={prog.valorFormatado} slug={prog.slug} />
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Urgência badge para últimas vagas */}
