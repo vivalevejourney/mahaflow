@@ -1,39 +1,77 @@
 
 
-## Tornar o CTA "Próxima Experiência" do Hero Automático
+## Atualizacoes na Secao de Atividades Mahaflow
 
-### Problema
-No Hero, a próxima experiência está **fixa** como "Cachoeira da Bicuda Grande - 31/01", que já passou. O calendário já calcula automaticamente qual é a próxima, mas o Hero não.
+### 1. Atualizar dados em `src/data/programacao2026.ts`
 
-### Solução
-Usar os dados de `programacoes2026` para calcular dinamicamente qual é a próxima experiência futura e exibir no Hero. Se todas já tiverem passado, o CTA some.
+**Dia Namaste** (id: `dia-namaste`)
+- Atualizar `valor: 67` e `valorFormatado: 'R$ 67,00'`
 
-### Arquivo a modificar
+**Travessia Joatinga** (id: `travessia-joatinga`)
+- Atualizar `valor: 1850` e `valorFormatado: 'R$ 1.850,00'`
 
-**`src/components/landing/HeroSection.tsx`**
+**Semana Santa** (id: `semana-santa-macacu`)
+- Remover data e preco: `valor: 0`, `valorFormatado: 'Em breve'`
+- Alterar `data: 'A definir'`, `dataISO` manter como referencia de posicao no calendario
+- Adicionar campo `emBreve: true` na interface `Programacao`
 
-1. Importar `programacoes2026` de `@/data/programacao2026` e funções de data (`parseISO`, `isPast`, `isToday`, `differenceInDays`) de `date-fns`
-2. Calcular `proximaExperiencia` -- a primeira experiência cujo `dataISO` ainda nao passou (mesma logica que ja existe no Programacao2026Section)
-3. Calcular `diasRestantes` para mostrar urgencia
-4. Substituir o bloco hardcoded (linhas 99-115) por conteudo dinamico:
-   - Nome: `proximaExperiencia.nome`
-   - Data: formatada a partir de `proximaExperiencia.data`
-   - Link: `/experiencias/${proximaExperiencia.slug}`
-   - Badge de urgencia baseada em `diasRestantes` (ex: "Poucas vagas!" se < 14 dias, "Inscrições abertas" se > 30 dias)
-5. Se nao houver proxima experiencia (todas passaram), o bloco inteiro nao renderiza
+**Rafting em Sapucaia** (id: `rafting-sapucaia`)
+- Atualizar `data: '16 de maio'`, `dataISO: '2026-05-16'`, `dataCompleta: '16 de maio de 2026'`, `diaSemana: 'Sabado'`
 
-### Detalhes Tecnicos
+**Pico da Caledonia** (id: `pico-caledonia`)
+- Atualizar `data: '29 a 30 de maio'`, `dataISO: '2026-05-29'`, `dataCompleta: '29 a 30 de maio de 2026'`, `diaSemana: 'Sexta e Sabado'`
 
-```text
-Logica de selecao:
-  programacoes2026.find(prog => !isPast(parseISO(prog.dataISO)) || isToday(parseISO(prog.dataISO)))
+**Nova experiencia: Pedra Bonita + Floresta da Tijuca**
+- Adicionar novo item no array, posicionado cronologicamente (14/03, entre Namaste e Joatinga)
+- `id: 'pedra-bonita-tijuca'`, `slug: 'pedra-bonita-tijuca'`
+- `data: '14 de marco'`, `dataISO: '2026-03-14'`, `valor: 390`, `valorFormatado: 'R$ 390,00'`
+- `incluso: ['Transporte saindo de Campos dos Goytacazes', 'Guiamento credenciado']`
+- `categoria: 'trilha'`
+- Usar imagem existente (`mahaflow-trilha.jpg` ou similar)
 
-Badge de urgencia:
-  <= 7 dias  -> "ULTIMAS VAGAS!" (vermelho, pulsando)
-  <= 14 dias -> "Poucas vagas!" (vermelho, pulsando)  
-  <= 30 dias -> "Vagas limitadas" (amarelo)
-  > 30 dias  -> "Inscrições abertas" (verde)
-```
+### 2. Atualizar interface `Programacao`
 
-Nenhum outro arquivo precisa ser alterado. A mudanca e isolada no HeroSection.
+Adicionar campo opcional `emBreve?: boolean` para marcar experiencias sem data/preco definidos.
+
+### 3. Badge "Em breve" na Semana Santa
+
+No `Programacao2026Section.tsx`, quando `prog.emBreve === true`:
+- Exibir badge "Em breve" grande e visivel no card
+- No lugar do botao "Detalhes / Reservar", mostrar botao "Quero ser avisado" que abre WhatsApp com mensagem pre-preenchida:
+  `"Ola! Tenho interesse na experiencia de Semana Santa e quero ser avisado quando abrir as inscricoes! 🌿"`
+
+### 4. Botoes de compartilhamento em todos os cards
+
+Adicionar no rodape de cada card (futuro e passado) um grupo de 3 botoes pequenos e discretos:
+
+**Botao 1 -- WhatsApp**
+- Icone de mensagem/WhatsApp (lucide `MessageCircle`)
+- Abre `https://wa.me/?text=` com mensagem: `"🌿 Ola! Veja essa experiencia incrivel da Mahaflow: [NOME] -- [DATA] por [PRECO]. Acesse: [URL]"`
+
+**Botao 2 -- Copiar link**
+- Icone `Link2` do lucide
+- Copia URL `{window.location.origin}/experiencias/{slug}` para clipboard
+- Toast "Link copiado!" com sonner
+
+**Botao 3 -- Compartilhar nativo**
+- Icone `Share2` do lucide
+- Usa `navigator.share()` com title, text e url
+- Renderiza apenas se `navigator.share` estiver disponivel (fallback: esconde o botao)
+
+Os botoes serao extraidos em um componente reutilizavel `ShareButtons` para evitar duplicacao entre cards futuros e passados.
+
+### Arquivos modificados
+
+| Arquivo | Alteracao |
+|---------|-----------|
+| `src/data/programacao2026.ts` | Atualizar precos, datas, adicionar Pedra Bonita, campo `emBreve` |
+| `src/components/landing/Programacao2026Section.tsx` | Badge "Em breve", botao WhatsApp Semana Santa, botoes de compartilhamento |
+
+### Detalhes tecnicos
+
+- O componente `ShareButtons` recebe `nome`, `data`, `valorFormatado`, `slug` como props
+- Usa `navigator.clipboard.writeText()` para copiar link
+- Usa `toast.success('Link copiado!')` do sonner para feedback
+- `navigator.share` e verificado com `typeof navigator.share === 'function'`
+- Os botoes usam `variant="ghost"` e `size="icon"` do shadcn, com `h-8 w-8` para serem discretos
 
