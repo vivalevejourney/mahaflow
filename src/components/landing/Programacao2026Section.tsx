@@ -91,6 +91,17 @@ const getCountdownInfo = (dataISO: string) => {
   };
 };
 
+// Função para cor do badge baseado em palavras-chave
+const getBadgeColor = (badge: string) => {
+  const lower = badge.toLowerCase();
+  if (lower.includes('feriado')) return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+  if (lower.includes('semana santa')) return 'bg-pink-100 text-pink-700 border-pink-300';
+  if (lower.includes('mulheres')) return 'bg-purple-100 text-purple-700 border-purple-300';
+  if (lower.includes('confirmada')) return 'bg-green-100 text-green-700 border-green-300';
+  if (lower.includes('almoço') || lower.includes('almoco')) return 'bg-amber-100 text-amber-700 border-amber-300';
+  return 'bg-muted text-muted-foreground border-border';
+};
+
 export const Programacao2026Section = () => {
   const programacoesPorMes = getProgramacoesPorMes();
   const mesesOrdenados = Object.keys(programacoesPorMes);
@@ -385,6 +396,21 @@ export const Programacao2026Section = () => {
                           <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
                             {prog.nome}
                           </h4>
+                          
+                          {/* Badges customizados */}
+                          {prog.badges && prog.badges.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 mb-2">
+                              {prog.badges.map((badge, i) => (
+                                <Badge
+                                  key={i}
+                                  className={`text-xs font-medium ${getBadgeColor(badge)}`}
+                                >
+                                  {badge}
+                                </Badge>
+                              ))}
+                            </div>
+                          )}
+                          
                           <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                             <MapPin size={14} className="text-primary shrink-0" />
                             Saída: {prog.localPartida}
@@ -414,22 +440,49 @@ export const Programacao2026Section = () => {
                         </div>
 
                         {/* Preço + Vagas */}
-                        <div className="flex items-center justify-between pt-2">
-                          <div>
-                            {prog.valor > 0 ? (
-                              <>
-                                <p className="text-2xl font-bold text-primary">{prog.valorFormatado}</p>
-                                <p className="text-xs text-muted-foreground">por pessoa</p>
-                              </>
-                            ) : (
-                              <p className="text-lg font-semibold text-muted-foreground">{prog.valorFormatado}</p>
-                            )}
-                          </div>
-                          {prog.vagas?.limite && (
-                            <Badge variant="outline" className="text-orange-600 border-orange-200 bg-orange-50">
-                              <Users size={12} className="mr-1" />
-                              {prog.vagas.limite} vagas
-                            </Badge>
+                        <div className="pt-2">
+                          {prog.opcoes && prog.opcoes.length > 0 ? (
+                            <div className="space-y-2">
+                              {prog.opcoes.map((opcao, i) => (
+                                <div key={i} className={`flex items-center justify-between rounded-lg px-3 py-2 ${
+                                  opcao.destaque 
+                                    ? 'bg-orange-50 border border-orange-200' 
+                                    : 'bg-secondary/30'
+                                }`}>
+                                  <div className="flex flex-col">
+                                    <span className="text-sm font-medium text-foreground">{opcao.nome}</span>
+                                    {opcao.destaque && (
+                                      <span className="text-xs font-semibold text-orange-600 flex items-center gap-1 mt-0.5">
+                                        <Clock size={10} />
+                                        {opcao.destaque}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <span className={`text-lg font-bold ${opcao.destaque ? 'text-orange-600' : 'text-primary'}`}>
+                                    {opcao.valorFormatado}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-between">
+                              <div>
+                                {prog.valor > 0 ? (
+                                  <>
+                                    <p className="text-2xl font-bold text-primary">{prog.valorFormatado}</p>
+                                    <p className="text-xs text-muted-foreground">por pessoa</p>
+                                  </>
+                                ) : (
+                                  <p className="text-lg font-semibold text-muted-foreground">{prog.valorFormatado}</p>
+                                )}
+                              </div>
+                              {prog.vagas?.limite && (
+                                <Badge variant="outline" className="text-orange-600 border-orange-200 bg-orange-50">
+                                  <Users size={12} className="mr-1" />
+                                  {prog.vagas.limite} vagas
+                                </Badge>
+                              )}
+                            </div>
                           )}
                         </div>
 
