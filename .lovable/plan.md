@@ -1,77 +1,85 @@
 
 
-## Atualizacoes na Secao de Atividades Mahaflow
+## Atualização Completa do Calendário Mahaflow 2026
 
-### 1. Atualizar dados em `src/data/programacao2026.ts`
+### Resumo das Mudanças
 
-**Dia Namaste** (id: `dia-namaste`)
-- Atualizar `valor: 67` e `valorFormatado: 'R$ 67,00'`
+Atualizar 6 cards de atividades com novos dados, badges personalizados, múltiplas opções de preço e alertas de urgência.
+
+### 1. Expandir interface `Programacao` em `programacao2026.ts`
+
+Adicionar campos opcionais para suportar os novos requisitos:
+
+```text
+badges?: string[]           -- badges customizados ("Feriado", "3 dias", etc.)
+opcoes?: Array<{            -- múltiplas opções de preço
+  nome: string              -- ex: "3 dias com hospedagem", "Grupo VIP"
+  valor: number
+  valorFormatado: string
+  destaque?: string         -- ex: "Reserve até 15/03"
+}>
+```
+
+### 2. Atualizar dados das experiências
+
+**Dia Namastê** (id: `dia-namaste`)
+- Nome: "Dia Namastê (Especial Dia das Mulheres)"
+- Data: 08/03 (dataISO: 2026-03-08)
+- Descrição: "Manhã de bem-estar, yoga e conexão"
+- Badges: `["Especial Dia das Mulheres 💜"]`
+- Duas opções de preço: R$ 67,00 (padrão) e R$ 40,00 (Grupo VIP)
+- Manter valor principal como 67
+
+**Pedra Bonita** (id: `pedra-bonita-tijuca`)
+- Atualizar descrição: "Trilha + Circuito de Cachoeiras (Cascatinha Taunay)"
 
 **Travessia Joatinga** (id: `travessia-joatinga`)
-- Atualizar `valor: 1850` e `valorFormatado: 'R$ 1.850,00'`
+- Badges: `["3 dias"]`
+- Dados já corretos (27-29/03, R$ 1.850)
 
 **Semana Santa** (id: `semana-santa-macacu`)
-- Remover data e preco: `valor: 0`, `valorFormatado: 'Em breve'`
-- Alterar `data: 'A definir'`, `dataISO` manter como referencia de posicao no calendario
-- Adicionar campo `emBreve: true` na interface `Programacao`
+- Renomear: "Lumiar / São Pedro da Serra"
+- Slug: manter ou atualizar para `semana-santa-lumiar`
+- Data: 03 a 05 de abril (dataISO: 2026-04-03)
+- Remover `emBreve: true`, adicionar dados concretos
+- Badges: `["Semana Santa 🌸"]`
+- Descrição: "Várias experiências + cachoeiras + estufa de morangos + centrinho de Lumiar"
+- Duas opções:
+  - "3 dias com hospedagem": R$ 1.050,00 com destaque "Reserve até 15/03 ⏰"
+  - "Bate e volta (03/04)": R$ 496,00
+- Valor principal: 1050
 
 **Rafting em Sapucaia** (id: `rafting-sapucaia`)
-- Atualizar `data: '16 de maio'`, `dataISO: '2026-05-16'`, `dataCompleta: '16 de maio de 2026'`, `diaSemana: 'Sabado'`
+- Data: 01 de maio (dataISO: 2026-05-01)
+- Valor: R$ 465,00
+- Badges: `["Feriado", "Com almoço incluso 🍽️"]`
+- Incluso: adicionar "Almoço incluso"
 
-**Pico da Caledonia** (id: `pico-caledonia`)
-- Atualizar `data: '29 a 30 de maio'`, `dataISO: '2026-05-29'`, `dataCompleta: '29 a 30 de maio de 2026'`, `diaSemana: 'Sexta e Sabado'`
+**Pico da Caledônia** (id: `pico-caledonia`)
+- Badges: `["Data confirmada ✅"]`
+- Dados já corretos (29-30/05, R$ 420)
 
-**Nova experiencia: Pedra Bonita + Floresta da Tijuca**
-- Adicionar novo item no array, posicionado cronologicamente (14/03, entre Namaste e Joatinga)
-- `id: 'pedra-bonita-tijuca'`, `slug: 'pedra-bonita-tijuca'`
-- `data: '14 de marco'`, `dataISO: '2026-03-14'`, `valor: 390`, `valorFormatado: 'R$ 390,00'`
-- `incluso: ['Transporte saindo de Campos dos Goytacazes', 'Guiamento credenciado']`
-- `categoria: 'trilha'`
-- Usar imagem existente (`mahaflow-trilha.jpg` ou similar)
+### 3. Atualizar UI em `Programacao2026Section.tsx`
 
-### 2. Atualizar interface `Programacao`
+**Badges customizados**: Renderizar `prog.badges` como badges coloridos abaixo do título ou na imagem de cada card.
 
-Adicionar campo opcional `emBreve?: boolean` para marcar experiencias sem data/preco definidos.
+**Múltiplas opções de preço**: Quando `prog.opcoes` existir, substituir a exibição de preço único por uma lista com as opções, cada uma com nome e valor. Se tiver `destaque`, mostrar com cor de alerta (laranja/vermelho) e ícone de relógio.
 
-### 3. Badge "Em breve" na Semana Santa
+**Alerta de urgência "Reserve até 15/03"**: Na opção da Semana Santa que tem `destaque`, renderizar um badge de urgência em cor laranja/vermelho com ícone ⏰.
 
-No `Programacao2026Section.tsx`, quando `prog.emBreve === true`:
-- Exibir badge "Em breve" grande e visivel no card
-- No lugar do botao "Detalhes / Reservar", mostrar botao "Quero ser avisado" que abre WhatsApp com mensagem pre-preenchida:
-  `"Ola! Tenho interesse na experiencia de Semana Santa e quero ser avisado quando abrir as inscricoes! 🌿"`
-
-### 4. Botoes de compartilhamento em todos os cards
-
-Adicionar no rodape de cada card (futuro e passado) um grupo de 3 botoes pequenos e discretos:
-
-**Botao 1 -- WhatsApp**
-- Icone de mensagem/WhatsApp (lucide `MessageCircle`)
-- Abre `https://wa.me/?text=` com mensagem: `"🌿 Ola! Veja essa experiencia incrivel da Mahaflow: [NOME] -- [DATA] por [PRECO]. Acesse: [URL]"`
-
-**Botao 2 -- Copiar link**
-- Icone `Link2` do lucide
-- Copia URL `{window.location.origin}/experiencias/{slug}` para clipboard
-- Toast "Link copiado!" com sonner
-
-**Botao 3 -- Compartilhar nativo**
-- Icone `Share2` do lucide
-- Usa `navigator.share()` com title, text e url
-- Renderiza apenas se `navigator.share` estiver disponivel (fallback: esconde o botao)
-
-Os botoes serao extraidos em um componente reutilizavel `ShareButtons` para evitar duplicacao entre cards futuros e passados.
+**Botão WhatsApp**: Manter em todos os cards a mensagem pré-pronta: "Olá! Tenho interesse na experiência [NOME] do dia [DATA]. Quero mais informações! 🌿"
 
 ### Arquivos modificados
 
-| Arquivo | Alteracao |
+| Arquivo | Alteração |
 |---------|-----------|
-| `src/data/programacao2026.ts` | Atualizar precos, datas, adicionar Pedra Bonita, campo `emBreve` |
-| `src/components/landing/Programacao2026Section.tsx` | Badge "Em breve", botao WhatsApp Semana Santa, botoes de compartilhamento |
+| `src/data/programacao2026.ts` | Atualizar interface, dados de 6 experiências |
+| `src/components/landing/Programacao2026Section.tsx` | Renderizar badges, opções de preço, alertas de urgência |
 
-### Detalhes tecnicos
+### Detalhes técnicos
 
-- O componente `ShareButtons` recebe `nome`, `data`, `valorFormatado`, `slug` como props
-- Usa `navigator.clipboard.writeText()` para copiar link
-- Usa `toast.success('Link copiado!')` do sonner para feedback
-- `navigator.share` e verificado com `typeof navigator.share === 'function'`
-- Os botoes usam `variant="ghost"` e `size="icon"` do shadcn, com `h-8 w-8` para serem discretos
+- `badges` renderizados com cores automáticas: palavras-chave como "Feriado" em amarelo, "Semana Santa" em rosa, "Dia das Mulheres" em roxo, genéricos em cinza
+- `opcoes` renderizados como lista vertical com separador, cada opção mostrando nome + valor
+- `destaque` com `className="text-orange-600 bg-orange-50 border-orange-200"` e ícone `Clock`
+- A lógica de `emBreve` continua funcionando para futuras experiências sem dados definidos
 
