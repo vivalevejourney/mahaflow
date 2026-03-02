@@ -1,5 +1,12 @@
 // Dados centralizados das programações 2026 Mahaflow
 
+export interface ProgramacaoOpcao {
+  nome: string;
+  valor: number;
+  valorFormatado: string;
+  destaque?: string;
+}
+
 export interface Programacao {
   id: string;
   slug: string;
@@ -17,6 +24,8 @@ export interface Programacao {
   naoIncluso?: string[];
   valor: number;
   valorFormatado: string;
+  badges?: string[];
+  opcoes?: ProgramacaoOpcao[];
   pagamento: {
     pix?: string;
     pixParcelado?: string;
@@ -205,30 +214,34 @@ export const programacoes2026: Programacao[] = [
   {
     id: 'dia-namaste',
     slug: 'dia-namaste',
-    nome: 'Dia Namastê – Pós-Carnaval',
-    data: '28 de fevereiro',
-    dataISO: '2026-02-28',
-    dataCompleta: '28 de fevereiro de 2026',
-    diaSemana: 'Sábado',
+    nome: 'Dia Namastê (Especial Dia das Mulheres)',
+    data: '08 de março',
+    dataISO: '2026-03-08',
+    dataCompleta: '08 de março de 2026',
+    diaSemana: 'Domingo',
     localPartida: 'Campos dos Goytacazes',
-    conceito: 'Depois do excesso, pausa. Depois do barulho, silêncio. Uma vivência para reorganizar corpo, mente e energia.',
+    conceito: 'Manhã de bem-estar, yoga e conexão. Uma vivência para reorganizar corpo, mente e energia.',
     oQueVaiViver: [
       'Vivência holística completa',
       'Práticas de respiração e meditação',
       'Conexão consigo mesmo',
-      'Reorganização de energia pós-carnaval',
+      'Manhã de bem-estar e yoga',
     ],
-    descricaoResumida: 'Uma pausa consciente para reorganizar corpo, mente e energia após o Carnaval.',
-    descricaoCompleta: 'Uma pausa consciente para reorganizar corpo, mente e energia após o Carnaval. Vivência holística completa com práticas de bem-estar e conexão.',
+    descricaoResumida: 'Manhã de bem-estar, yoga e conexão',
+    descricaoCompleta: 'Manhã de bem-estar, yoga e conexão. Vivência holística completa com práticas de bem-estar e conexão.',
     incluso: [
       'Transporte',
       'Vivência holística Mahaflow',
       'Guiamento',
     ],
+    badges: ['Especial Dia das Mulheres 💜'],
+    opcoes: [
+      { nome: 'Padrão', valor: 67, valorFormatado: 'R$ 67,00' },
+      { nome: 'Grupo VIP', valor: 40, valorFormatado: 'R$ 40,00' },
+    ],
     valor: 67,
     valorFormatado: 'R$ 67,00',
     pagamento: {},
-    informacoesImportantes: ['Valor e detalhes serão divulgados em breve'],
     imagem: '/src/assets/experiencias/dia-namaste/capa.png',
     galeria: [
       '/src/assets/experiencias/dia-namaste/galeria-1.png',
@@ -251,8 +264,8 @@ export const programacoes2026: Programacao[] = [
       'Contato com a Mata Atlântica urbana',
       'Dia completo de natureza e contemplação',
     ],
-    descricaoResumida: 'Trilha icônica com vista panorâmica e imersão na Floresta da Tijuca.',
-    descricaoCompleta: 'Trilha icônica com vista panorâmica do Rio de Janeiro e imersão na maior floresta urbana do mundo. Uma experiência completa de natureza e contemplação.',
+    descricaoResumida: 'Trilha + Circuito de Cachoeiras (Cascatinha Taunay)',
+    descricaoCompleta: 'Trilha + Circuito de Cachoeiras (Cascatinha Taunay). Trilha icônica com vista panorâmica do Rio de Janeiro e imersão na maior floresta urbana do mundo.',
     incluso: [
       'Transporte saindo de Campos dos Goytacazes',
       'Guiamento credenciado',
@@ -272,6 +285,7 @@ export const programacoes2026: Programacao[] = [
     dataCompleta: '27 a 29 de março de 2026',
     diaSemana: 'Sexta a Domingo',
     localPartida: 'Campos dos Goytacazes',
+    badges: ['3 dias'],
     conceito: 'Uma das travessias mais lindas do Brasil. Pesada? Sim. Transformadora? Muito mais. Experiência exclusiva, intensa e para quem já tem preparo físico e mental.',
     oQueVaiViver: [
       'Travessia por praias desertas',
@@ -317,45 +331,38 @@ export const programacoes2026: Programacao[] = [
     categoria: 'expedicao',
   },
   {
-    id: 'semana-santa-macacu',
-    slug: 'semana-santa-macacu',
-    nome: 'Semana Santa – Cachoeira de Macacu',
-    data: 'A definir',
+    id: 'semana-santa-lumiar',
+    slug: 'semana-santa-lumiar',
+    nome: 'Lumiar / São Pedro da Serra',
+    data: '03 a 05 de abril',
     dataISO: '2026-04-03',
-    dataCompleta: 'A definir',
-    diaSemana: 'A definir',
+    dataCompleta: '03 a 05 de abril de 2026',
+    diaSemana: 'Sexta a Domingo',
     localPartida: 'Campos dos Goytacazes',
-    conceito: 'Imersão em natureza com camping, cachoeiras e convivência real. Simples, intenso e memorável.',
+    badges: ['Semana Santa 🌸'],
+    conceito: 'Várias experiências + cachoeiras + estufa de morangos + centrinho de Lumiar. Simples, intenso e memorável.',
     oQueVaiViver: [
-      'Camping em meio à natureza',
-      'Cachoeiras Terceira Dimensão e Gravatá',
-      'Jequitibá e Banheira Natural',
-      'Churrasco e luau sob as estrelas',
+      'Cachoeiras incríveis da região',
+      'Estufa de morangos',
+      'Centrinho de Lumiar',
+      'Várias experiências em 3 dias',
       'Conexão real com o grupo',
     ],
-    roteiro: [
-      'Sexta: Cachoeiras Terceira Dimensão e Gravatá',
-      'Sábado: Jequitibá e Banheira Natural',
-    ],
-    descricaoResumida: 'Imersão em natureza com camping, cachoeiras e vivência coletiva.',
-    descricaoCompleta: 'Imersão em natureza com camping, cachoeiras e vivência coletiva. Perfeito para quem busca desconexão e contato profundo com a natureza.',
+    descricaoResumida: 'Várias experiências + cachoeiras + estufa de morangos + centrinho de Lumiar',
+    descricaoCompleta: 'Várias experiências + cachoeiras + estufa de morangos + centrinho de Lumiar. Perfeito para quem busca desconexão e contato profundo com a natureza.',
     incluso: [
-      '2 noites – Camping Toca do Au Au',
-      'Acesso total à área',
-      '2 cafés da manhã',
-      '1 churrasco / luau',
       'Transporte saindo de Campos',
       'Guiamento Mahaflow',
     ],
-    valor: 0,
-    valorFormatado: 'Em breve',
-    pagamento: {},
-    informacoesImportantes: [
-      'Data e valor serão divulgados em breve',
+    opcoes: [
+      { nome: '3 dias com hospedagem', valor: 1050, valorFormatado: 'R$ 1.050,00', destaque: 'Reserve até 15/03 ⏰' },
+      { nome: 'Bate e volta (03/04)', valor: 496, valorFormatado: 'R$ 496,00' },
     ],
+    valor: 1050,
+    valorFormatado: 'R$ 1.050,00',
+    pagamento: {},
     imagem: 'mahaflow-cachoeira.jpg',
     categoria: 'expedicao',
-    emBreve: true,
   },
   {
     id: 'pico-caledonia',
@@ -366,6 +373,7 @@ export const programacoes2026: Programacao[] = [
     dataCompleta: '29 a 30 de maio de 2026',
     diaSemana: 'Sexta e Sábado',
     localPartida: 'Campos dos Goytacazes',
+    badges: ['Data confirmada ✅'],
     conceito: 'Montanha clássica. Superação física. Visual que humilha qualquer wallpaper.',
     oQueVaiViver: [
       'Conquista de um dos picos mais bonitos da região',
@@ -390,11 +398,12 @@ export const programacoes2026: Programacao[] = [
     id: 'rafting-sapucaia',
     slug: 'rafting-sapucaia',
     nome: 'Rafting em Sapucaia',
-    data: '16 de maio',
-    dataISO: '2026-05-16',
-    dataCompleta: '16 de maio de 2026',
-    diaSemana: 'Sábado',
+    data: '01 de maio',
+    dataISO: '2026-05-01',
+    dataCompleta: '01 de maio de 2026',
+    diaSemana: 'Sexta',
     localPartida: 'Campos dos Goytacazes',
+    badges: ['Feriado', 'Com almoço incluso 🍽️'],
     conceito: 'Adrenalina, risadas e espírito de equipe. Aqui não tem pose — só experiência real.',
     oQueVaiViver: [
       'Descida emocionante pelas corredeiras',
@@ -409,9 +418,10 @@ export const programacoes2026: Programacao[] = [
       'Rafting',
       'Guiamento',
       'Seguro aventura',
+      'Almoço incluso',
     ],
-    valor: 435,
-    valorFormatado: 'R$ 435,00',
+    valor: 465,
+    valorFormatado: 'R$ 465,00',
     pagamento: {},
     imagem: 'mahaflow-rafting-action.jpg',
     categoria: 'agua',
