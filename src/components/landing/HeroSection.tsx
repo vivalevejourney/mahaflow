@@ -176,9 +176,8 @@ export const HeroSection = () => {
         >
           <Button
             size="lg"
-            variant="outline"
             onClick={() => document.getElementById('experience-club')?.scrollIntoView({ behavior: 'smooth' })}
-            className="border-white/50 text-white hover:bg-white/10 hover:text-white text-base px-6 py-5 rounded-xl backdrop-blur-sm"
+            className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-base px-6 py-5 rounded-xl backdrop-blur-sm shadow-lg"
           >
             <Sparkles className="mr-2" size={18} />
             Mahaflow Experience ✨

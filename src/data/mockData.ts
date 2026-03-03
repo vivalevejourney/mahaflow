@@ -544,6 +544,7 @@ export const navItems = [
   { label: 'Início', href: '/' },
   { label: 'Experiências', href: '/#experiencias' },
   { label: 'Calendário', href: '/#calendario' },
+  { label: 'Experience', href: '/#experience-club' },
   { label: 'Vem Ser Maha', href: '/#vem-ser-maha' },
   { label: 'Loja', href: '/loja' },
   { label: 'Blog', href: '/blog' },
