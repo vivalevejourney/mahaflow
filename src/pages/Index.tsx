@@ -12,6 +12,7 @@ const Programacao2026Section = lazy(() => import('@/components/landing/Programac
 const VideoSection = lazy(() => import('@/components/landing/VideoSection').then(m => ({ default: m.VideoSection })));
 const HowToJoinSection = lazy(() => import('@/components/landing/HowToJoinSection').then(m => ({ default: m.HowToJoinSection })));
 const VemSerMahaSection = lazy(() => import('@/components/landing/VemSerMahaSection').then(m => ({ default: m.VemSerMahaSection })));
+const ExperienceClubSection = lazy(() => import('@/components/landing/ExperienceClubSection').then(m => ({ default: m.ExperienceClubSection })));
 const MeetingsSection = lazy(() => import('@/components/landing/MeetingsSection').then(m => ({ default: m.MeetingsSection })));
 const MyAccountSection = lazy(() => import('@/components/landing/MyAccountSection').then(m => ({ default: m.MyAccountSection })));
 const ShopSection = lazy(() => import('@/components/landing/ShopSection').then(m => ({ default: m.ShopSection })));
@@ -48,6 +49,9 @@ const Index = () => {
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <VemSerMahaSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <ExperienceClubSection />
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <MeetingsSection />
