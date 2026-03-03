@@ -1,85 +1,97 @@
 
 
-## Atualização Completa do Calendário Mahaflow 2026
+## Nova Seção "Mahaflow Experience" + Botão no Hero
 
-### Resumo das Mudanças
+### Resumo
 
-Atualizar 6 cards de atividades com novos dados, badges personalizados, múltiplas opções de preço e alertas de urgência.
+Criar uma nova seção no site apresentando o **Mahaflow Experience**, um clube de assinaturas para experiências na natureza, baseado no conteúdo do PDF enviado. Adicionar também um botão no Hero que leva diretamente a essa seção.
 
-### 1. Expandir interface `Programacao` em `programacao2026.ts`
+### 1. Criar componente `ExperienceClubSection.tsx`
 
-Adicionar campos opcionais para suportar os novos requisitos:
+Nova seção com `id="experience-club"` contendo:
+
+**Bloco 1 — Introdução emocional**
+- Título: "Quando foi que viver experiências virou algo tão distante?"
+- Subtítulo: "O Mahaflow Experience nasceu para tornar o bem-estar, o ecoturismo e a conexão com a natureza acessíveis a todos."
+- Frases de impacto: "Sem pressa. Sem culpa. Sem pesar no bolso."
+
+**Bloco 2 — O que é**
+- Título: "O que é o Mahaflow Experience?"
+- Descrição: "Um clube de experiências onde você contribui mensalmente e acumula créditos para viver viagens, trilhas, passeios e vivências organizadas pela Mahaflow."
+- Frase: "Viver deixa de ser exceção e passa a fazer parte do caminho."
+
+**Bloco 3 — Como funciona (4 passos)**
+- "Simples. Leve. Possível."
+- 1. Você escolhe quanto investir por mês
+- 2. Acumula créditos mensalmente
+- 3. Usa em experiências Mahaflow
+- 4. E ainda pode participar de sorteios
+- Frase: "Aqui, constância vale mais que pressa."
+
+**Bloco 4 — "Se identifica com isso?" (dores)**
+Lista de frases com ícones de aspas/check:
+- "Quero fazer coisas diferentes, mas sempre acabo no mesmo lugar"
+- "Até quero ir, mas transporte sempre é um problema"
+- "Quando vejo, já passou mais um ano"
+- "Não tenho companhia"
+- "Tudo fica caro quando deixo pra decidir em cima da hora"
+
+**Bloco 5 — Planos de assinatura (tabela/cards)**
+
+| Plano | Descrição | Preço |
+|-------|-----------|-------|
+| Descobridor(a) | Para iniciantes que querem dar o primeiro passo e viver novas experiências. | R$ 30/mês |
+| Explorador(a) | Para quem quer participar com frequência das vivências locais. | R$ 50/mês |
+| Aventureiro(a) | Para quem busca experiências completas e viagens fora da cidade. | R$ 75/mês |
+| Lenda | Para os que fazem do Mahaflow um estilo de vida e querem prioridade em tudo. | R$ 100/mês |
+
+Cada plano como um card com destaque visual no plano "Aventureiro(a)" (mais popular).
+
+**Bloco 6 — Benefícios "Ao entrar, você se torna Maha"**
+Lista com ícones:
+- Experiências na natureza que você não faria sozinho(a)
+- Novos lugares, novos cenários, novas histórias
+- Vagas exclusivas e acesso antecipado
+- Valores mais acessíveis
+- Pagamento facilitado (sem juros e sem cartão)
+- Transporte incluso
+- Sorteios e benefícios exclusivos
+
+**Bloco 7 — CTA Final**
+- "Sua próxima experiência começa agora"
+- "Viva aos poucos e intensamente. Faça parte do Mahaflow Experience."
+- Botão "Fale com a gente" → WhatsApp (22 98160-2212) com mensagem: "Olá! Quero saber mais sobre o Mahaflow Experience! 🌿"
+
+### 2. Adicionar botão no HeroSection
+
+No bloco de CTAs do Hero (ao lado de "Explorar experiências" e "VEM SER MAHA!"), adicionar um terceiro botão ou substituir posição:
 
 ```text
-badges?: string[]           -- badges customizados ("Feriado", "3 dias", etc.)
-opcoes?: Array<{            -- múltiplas opções de preço
-  nome: string              -- ex: "3 dias com hospedagem", "Grupo VIP"
-  valor: number
-  valorFormatado: string
-  destaque?: string         -- ex: "Reserve até 15/03"
-}>
+Botão: "Mahaflow Experience ✨"
+Estilo: outline com borda branca, texto branco
+Ação: scroll suave até id="experience-club"
 ```
 
-### 2. Atualizar dados das experiências
+Será adicionado como um link abaixo dos dois botões existentes, com estilo distinto (outline/transparente) para não competir com os CTAs principais.
 
-**Dia Namastê** (id: `dia-namaste`)
-- Nome: "Dia Namastê (Especial Dia das Mulheres)"
-- Data: 08/03 (dataISO: 2026-03-08)
-- Descrição: "Manhã de bem-estar, yoga e conexão"
-- Badges: `["Especial Dia das Mulheres 💜"]`
-- Duas opções de preço: R$ 67,00 (padrão) e R$ 40,00 (Grupo VIP)
-- Manter valor principal como 67
+### 3. Registrar no Index.tsx
 
-**Pedra Bonita** (id: `pedra-bonita-tijuca`)
-- Atualizar descrição: "Trilha + Circuito de Cachoeiras (Cascatinha Taunay)"
-
-**Travessia Joatinga** (id: `travessia-joatinga`)
-- Badges: `["3 dias"]`
-- Dados já corretos (27-29/03, R$ 1.850)
-
-**Semana Santa** (id: `semana-santa-macacu`)
-- Renomear: "Lumiar / São Pedro da Serra"
-- Slug: manter ou atualizar para `semana-santa-lumiar`
-- Data: 03 a 05 de abril (dataISO: 2026-04-03)
-- Remover `emBreve: true`, adicionar dados concretos
-- Badges: `["Semana Santa 🌸"]`
-- Descrição: "Várias experiências + cachoeiras + estufa de morangos + centrinho de Lumiar"
-- Duas opções:
-  - "3 dias com hospedagem": R$ 1.050,00 com destaque "Reserve até 15/03 ⏰"
-  - "Bate e volta (03/04)": R$ 496,00
-- Valor principal: 1050
-
-**Rafting em Sapucaia** (id: `rafting-sapucaia`)
-- Data: 01 de maio (dataISO: 2026-05-01)
-- Valor: R$ 465,00
-- Badges: `["Feriado", "Com almoço incluso 🍽️"]`
-- Incluso: adicionar "Almoço incluso"
-
-**Pico da Caledônia** (id: `pico-caledonia`)
-- Badges: `["Data confirmada ✅"]`
-- Dados já corretos (29-30/05, R$ 420)
-
-### 3. Atualizar UI em `Programacao2026Section.tsx`
-
-**Badges customizados**: Renderizar `prog.badges` como badges coloridos abaixo do título ou na imagem de cada card.
-
-**Múltiplas opções de preço**: Quando `prog.opcoes` existir, substituir a exibição de preço único por uma lista com as opções, cada uma com nome e valor. Se tiver `destaque`, mostrar com cor de alerta (laranja/vermelho) e ícone de relógio.
-
-**Alerta de urgência "Reserve até 15/03"**: Na opção da Semana Santa que tem `destaque`, renderizar um badge de urgência em cor laranja/vermelho com ícone ⏰.
-
-**Botão WhatsApp**: Manter em todos os cards a mensagem pré-pronta: "Olá! Tenho interesse na experiência [NOME] do dia [DATA]. Quero mais informações! 🌿"
+Adicionar lazy load da nova seção, posicionada após a seção "VemSerMahaSection" e antes de "MeetingsSection" (ou após AboutSection, dependendo do fluxo ideal).
 
 ### Arquivos modificados
 
 | Arquivo | Alteração |
 |---------|-----------|
-| `src/data/programacao2026.ts` | Atualizar interface, dados de 6 experiências |
-| `src/components/landing/Programacao2026Section.tsx` | Renderizar badges, opções de preço, alertas de urgência |
+| `src/components/landing/ExperienceClubSection.tsx` | Novo componente com toda a seção |
+| `src/components/landing/HeroSection.tsx` | Adicionar botão "Mahaflow Experience" |
+| `src/pages/Index.tsx` | Registrar nova seção com lazy load |
 
 ### Detalhes técnicos
 
-- `badges` renderizados com cores automáticas: palavras-chave como "Feriado" em amarelo, "Semana Santa" em rosa, "Dia das Mulheres" em roxo, genéricos em cinza
-- `opcoes` renderizados como lista vertical com separador, cada opção mostrando nome + valor
-- `destaque` com `className="text-orange-600 bg-orange-50 border-orange-200"` e ícone `Clock`
-- A lógica de `emBreve` continua funcionando para futuras experiências sem dados definidos
+- Seção usa o mesmo padrão visual do site: gradientes, cards com `bg-card/80 backdrop-blur-sm`, badges com cores da marca
+- Planos de assinatura como cards com `border-primary` no plano destacado
+- Ícones do lucide-react: `Sparkles`, `Users`, `MapPin`, `CreditCard`, `Gift`, `Truck`, `Star`, `MessageCircle`
+- Scroll suave no botão do Hero usando `document.getElementById('experience-club')?.scrollIntoView({ behavior: 'smooth' })`
+- Botão WhatsApp no CTA final usa `https://wa.me/5522981602212?text=...`
+- Responsivo: grid de planos em 1 coluna (mobile) → 2 colunas (tablet) → 4 colunas (desktop)
 
