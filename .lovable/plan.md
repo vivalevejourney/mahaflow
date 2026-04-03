@@ -1,61 +1,90 @@
 
 
-## Atualizar Experiência Rafting em Sapucaia com Informações Completas
+## Atualização Completa do Site Mahaflow — Abril 2026
 
-### Resumo
+Foco em conversão: transformar o site numa máquina de captura para o Mahaflow Experience.
 
-Atualizar o card do **Rafting em Sapucaia** (`rafting-sapucaia`) no arquivo de dados com todas as informações detalhadas fornecidas sobre o Rafting Paraibuna Aventura.
+### 1. Substituir "RotaFácil" por "i9 Experience" (6 arquivos)
 
-### Alterações em `src/data/programacao2026.ts`
+| Arquivo | Ação |
+|---------|------|
+| `AboutSection.tsx` | Trocar texto do trust badge para "Organização profissional por i9 Experience" |
+| `CalendarSection.tsx` | Trocar menção RotaFácil por i9 Experience |
+| `HowToJoinSection.tsx` | Trocar info box e trust badges |
+| `Footer.tsx` | Trocar logo/texto "RotaFácil" por "i9 Experience", remover import do logo antigo |
+| `GestorLogin.tsx` | Trocar branding para i9 Experience |
+| `GestorDashboard.tsx` | Trocar branding para i9 Experience |
 
-Atualizar o objeto `rafting-sapucaia` com:
+Nota: o asset `rotafacil-logo.png` sera substituido por texto "i9 Experience" (sem logo).
 
-**Nome**: "Rafting Paraibuna Aventura"
+### 2. Ocultar rotas do menu de navegacao
 
-**Conceito**: "Viva uma experiência de emoção, adrenalina e diversão, em contato com a natureza! Um percurso completo das 21 quedas e corredeiras classes III e IV do rio Paraibuna."
+Em `src/data/mockData.ts`, remover `Loja` do `navItems`. As rotas `/feed`, `/mahatinder`, `/loja` ja nao estao no menu (apenas Loja esta). Remover o item `{ label: 'Loja', href: '/loja' }`.
 
-**Descrição resumida**: "Rafting completo com 21 quedas e corredeiras classes III e IV, day use na base, almoço buffet livre e fotos/vídeos inclusos."
+### 3. Hero Section — novos CTAs
 
-**Descrição completa**: Texto expandido incluindo informações sobre a Base Tuareg, o percurso exclusivo com 10 corredeiras extras, e a área de lazer de 10.000 m².
+Em `HeroSection.tsx`:
+- Botao 1 (verde): "Quero fazer parte" → scroll para `#experience-club`
+- Botao 2 (branco): "Ver programação 2026" → scroll para `#programacao-2026`
+- Remover o botao separado "Mahaflow Experience ✨" e o import de Sparkles
 
-**O que vai viver** (oQueVaiViver):
-- Percurso completo das 21 quedas e corredeiras classes III e IV
-- Surf em corredeira, flutuação e banhos de rio
-- 10 corredeiras exclusivas extras
-- Day use em base com 10.000 m² de área verde
+### 4. ExperienceClubSection — reformulacao completa
 
-**Incluso** (lista completa):
-- Rafting 3h de duração
-- Seguro Ecotrip
-- Sistema de Gestão da Segurança
-- Base de Aventuras (day use de lazer + estrutura)
-- Reunião de instruções
-- Equipamentos especializados
-- Instrutores profissionais
-- Equipe de Kayaks de resgate
-- Transporte no passeio
-- Almoço buffet livre
-- Fotos e vídeos
-- Day use: Piscina, Slackline, Ping pong, Peteca, Tacobol, Badminton, Frescobol, Lago, Redário, Solarium, Campo de futebol, Quadra de vôlei
+Reescrever o componente mantendo a estrutura de blocos mas com:
+- Titulo: "Mahaflow Experience" / Subtitulo: "Natureza em Movimento"
+- Texto de abertura atualizado
+- Passos atualizados (investir, acumular, usar, sorteios)
+- **Cards de planos com beneficios detalhados por nivel**:
+  - Descobridor(a) R$30 — Compass — beneficios basicos
+  - Explorador(a) R$50 — MapPin — tudo do anterior + mais
+  - Aventureiro(a) R$75 — Mountain — MAIS POPULAR — tudo anterior + viagens
+  - Lenda R$100 — Crown — tudo anterior + VIP exclusivo
+- Botao de cada card: "Quero esse plano" → WhatsApp com nome do plano na mensagem
+- Frase final: "Essas experiências e muito mais. Venha nos conhecer!"
+- CTA final: "Fale com a Dani" → WhatsApp
 
-**Dados Técnicos**:
-- Local: Base Tuareg (10min de Três Rios) - 1h50 do RJ
-- Horário chegada: 09h30
-- Indicação: Iniciantes e intermediários
-- Idade mínima: 08 anos
-- Bote: até 8 pessoas + Instrutor
+### 5. VemSerMahaSection — simplificar
 
-**Informações Importantes**:
-- A atividade pode ser realizada em qualquer época do ano (faça chuva ou faça sol), com segurança
-- São 10 corredeiras a mais que só quem vem com a Tuareg conhece
+- Remover o card de preco R$34,90 (pricing card inteiro, linhas 114-188)
+- Remover o MahaTinder preview (matchCards e o bloco visual, linhas 190-234)
+- Alterar titulo para "Tudo que você ganha sendo Maha"
+- Manter apenas a grade de beneficios por categoria (Conexão, Atividades, Economia, Exclusivo)
+- CTA: "Escolha seu plano" → scroll para `#experience-club`
 
-**Valor**: R$ 470,00 (atualizado de R$ 465,00)
+### 6. NotFound — traduzir para portugues
 
-**Badges**: Manter "Feriado" e "Com almoço incluso 🍽️"
+Alterar titulo, texto e link em `NotFound.tsx`.
 
-### Arquivo modificado
+### 7. index.css — remover bloco anti-watermark
 
-| Arquivo | Alteração |
-|---------|-----------|
-| `src/data/programacao2026.ts` | Atualizar objeto `rafting-sapucaia` com dados completos |
+Remover o bloco CSS que tenta esconder `.lovable-edit-button`, `[class*="lovable"]`, etc. (ultimas ~10 linhas do arquivo).
+
+### 8. App.css — limpar
+
+Esvaziar o conteudo (remover estilos padrao do Vite).
+
+### 9. index.html — atualizar metadados
+
+- Title: "Mahaflow — Natureza em Movimento | Campos dos Goytacazes, RJ"
+- Description: "Mahaflow Experience: clube de experiências ao ar livre. Trilhas, rafting, vivências e conexão com a natureza. Planos a partir de R$30/mês. Campos dos Goytacazes, RJ."
+- Author: "Mahaflow"
+
+### Arquivos modificados (11 arquivos)
+
+| Arquivo | Tipo |
+|---------|------|
+| `src/components/landing/HeroSection.tsx` | Editar CTAs |
+| `src/components/landing/ExperienceClubSection.tsx` | Reescrever completo |
+| `src/components/landing/VemSerMahaSection.tsx` | Simplificar |
+| `src/components/landing/AboutSection.tsx` | Trocar RotaFácil |
+| `src/components/landing/CalendarSection.tsx` | Trocar RotaFácil |
+| `src/components/landing/HowToJoinSection.tsx` | Trocar RotaFácil |
+| `src/components/layout/Footer.tsx` | Trocar RotaFácil |
+| `src/pages/GestorLogin.tsx` | Trocar RotaFácil |
+| `src/pages/GestorDashboard.tsx` | Trocar RotaFácil |
+| `src/pages/NotFound.tsx` | Traduzir |
+| `src/data/mockData.ts` | Remover Loja do menu |
+| `src/index.css` | Remover bloco watermark |
+| `src/App.css` | Esvaziar |
+| `index.html` | Atualizar meta tags |
 
