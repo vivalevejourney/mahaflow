@@ -3,7 +3,6 @@ import { Instagram, Mail, Phone, MapPin, MessageCircle, KeyRound } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import mahaflowLogo from '@/assets/mahaflow-logo-new.png';
-import rotafacilLogo from '@/assets/rotafacil-logo.png';
 
 export const Footer = () => {
   return (
