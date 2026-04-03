@@ -152,38 +152,22 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 mb-4"
+          className="flex flex-col sm:flex-row gap-4 mb-12"
         >
           <Button
             size="lg"
-            onClick={scrollToExperiences}
+            onClick={scrollToExperienceClub}
             className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-xl shadow-glow group"
           >
-            Explorar experiências
+            Quero fazer parte
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </Button>
-          <Link to="/cadastro">
-            <Button
-              size="lg"
-              className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-xl w-full sm:w-auto shadow-lg"
-            >
-              VEM SER MAHA!
-            </Button>
-          </Link>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65 }}
-          className="mb-12"
-        >
           <Button
             size="lg"
-            onClick={() => document.getElementById('experience-club')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-base px-6 py-5 rounded-xl backdrop-blur-sm shadow-lg"
+            onClick={scrollToProgramacao}
+            className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-xl w-full sm:w-auto shadow-lg"
           >
-            <Sparkles className="mr-2" size={18} />
-            Mahaflow Experience ✨
+            Ver programação 2026
           </Button>
         </motion.div>
 
