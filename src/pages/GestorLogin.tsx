@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useGestor } from '@/contexts/GestorContext';
 import { loginSchema } from '@/lib/validation';
-import rotafacilLogo from '@/assets/rotafacil-logo.png';
+
 
 const GestorLogin = () => {
   const [email, setEmail] = useState('');
