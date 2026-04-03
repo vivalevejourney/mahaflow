@@ -1051,14 +1051,13 @@ const GestorDashboard = () => {
             </TabsContent>
           </Tabs>
 
-          {/* RotaFácil Branding */}
+          {/* i9 Experience Branding */}
           <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5 border border-primary/20 text-center">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <img src={rotafacilLogo} alt="RotaFácil" className="h-8" />
-              <span className="text-lg font-semibold text-foreground">RotaFácil</span>
+              <span className="text-lg font-semibold text-foreground">i9 Experience</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Plataforma white label para organização de excursões, viagens e experiências.
+              Organização profissional para experiências ao ar livre.
               Menos mensagens, mais clareza. Tudo sob controle.
             </p>
           </div>
