@@ -61,7 +61,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { useGestor } from '@/contexts/GestorContext';
-import rotafacilLogo from '@/assets/rotafacil-logo.png';
+
 
 // Mock participants data
 const participants = [
