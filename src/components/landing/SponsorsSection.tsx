@@ -32,7 +32,7 @@ export const SponsorsSection = () => {
         </div>
 
         {/* Placeholder Slots Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-16" style={{ isolation: 'isolate' }}>
           {sponsorSlots.map((slot) => (
             <a
               key={slot.id}
