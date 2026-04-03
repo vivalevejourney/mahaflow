@@ -314,15 +314,33 @@
 
 @keyframes float-gentle {
   0%, 100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
+    opacity: 1;
   }
   50% {
-    transform: translateY(-12px) rotate(1deg);
+    transform: translateY(-12px);
+    opacity: 0.95;
   }
 }
 
 .animate-float-gentle {
   animation: float-gentle 10s ease-in-out infinite;
-  will-change: transform;
+  will-change: transform, opacity;
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 

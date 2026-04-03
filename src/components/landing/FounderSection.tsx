@@ -52,7 +52,7 @@ export const FounderSection = () => {
                   muted={isMuted}
                   loop={false}
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   onEnded={handleVideoEnd}
                 />
 
