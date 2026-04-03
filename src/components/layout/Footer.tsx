@@ -158,18 +158,13 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* Powered by RotaFácil */}
+      {/* Powered by i9 Experience */}
       <div className="border-t border-background/10">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col items-center justify-center text-center space-y-3">
             <span className="text-background/40 text-xs uppercase tracking-widest">Powered by</span>
             <div className="flex items-center gap-3">
-              <img
-                src={rotafacilLogo}
-                alt="RotaFácil"
-                className="h-8 w-auto object-contain opacity-70"
-              />
-              <span className="text-background/70 font-medium">RotaFácil</span>
+              <span className="text-background/70 font-medium">i9 Experience</span>
               <Link
                 to="/gestor-login"
                 className="opacity-30 hover:opacity-70 transition-opacity ml-2"
@@ -179,7 +174,7 @@ export const Footer = () => {
               </Link>
             </div>
             <p className="text-background/50 text-xs max-w-md">
-              Plataforma white label para excursões, viagens e experiências organizadas
+              Organização profissional para experiências ao ar livre
             </p>
           </div>
         </div>

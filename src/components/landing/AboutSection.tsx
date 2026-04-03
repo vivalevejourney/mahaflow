@@ -63,7 +63,7 @@ export const AboutSection = () => {
             <div className="flex items-center gap-3 p-4 rounded-xl bg-primary/5 border border-primary/20">
               <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
               <p className="text-sm text-muted-foreground">
-                <strong className="text-foreground">Tudo sob controle.</strong> Sistema de organização profissional para experiências inesquecíveis.
+                <strong className="text-foreground">Tudo sob controle.</strong> Organização profissional por i9 Experience.
               </p>
             </div>
 

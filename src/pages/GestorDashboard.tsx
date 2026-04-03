@@ -333,8 +333,7 @@ const GestorDashboard = () => {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>Powered by</span>
-                <img src={rotafacilLogo} alt="RotaFácil" className="h-4 opacity-70" />
-                <span className="font-medium">RotaFácil</span>
+                <span className="font-medium">i9 Experience</span>
               </div>
             </div>
             <div className="flex gap-3">
