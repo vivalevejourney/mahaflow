@@ -21,8 +21,8 @@ export const ImagesSlider = ({
   direction?: "up" | "down";
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
+  const [firstLoaded, setFirstLoaded] = useState(false);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) =>
@@ -36,27 +36,46 @@ export const ImagesSlider = ({
     );
   }, [images.length]);
 
+  // Load first image immediately, rest lazily
   useEffect(() => {
-    const loadImages = () => {
-      setLoading(true);
-      const loadPromises = images.map((image) => {
-        return new Promise<string>((resolve, reject) => {
-          const img = new Image();
-          img.src = image;
-          img.onload = () => resolve(image);
-          img.onerror = reject;
-        });
-      });
+    if (images.length === 0) return;
 
-      Promise.all(loadPromises)
-        .then((loaded) => {
-          setLoadedImages(loaded);
-          setLoading(false);
-        })
-        .catch((error) => console.error("Failed to load images", error));
+    // Load first image with high priority
+    const firstImg = new Image();
+    firstImg.src = images[0];
+    (firstImg as any).fetchPriority = "high";
+    firstImg.onload = () => {
+      setLoadedImages([images[0]]);
+      setFirstLoaded(true);
+    };
+    firstImg.onerror = () => {
+      setFirstLoaded(true);
     };
 
-    loadImages();
+    // Lazy load remaining images after first is ready
+    if (images.length > 1) {
+      const loadRest = () => {
+        const remaining = images.slice(1);
+        const loadPromises = remaining.map((image) => {
+          return new Promise<string>((resolve, reject) => {
+            const img = new Image();
+            img.src = image;
+            img.onload = () => resolve(image);
+            img.onerror = reject;
+          });
+        });
+
+        Promise.all(loadPromises)
+          .then((loaded) => {
+            setLoadedImages([images[0], ...loaded]);
+          })
+          .catch((error) => console.error("Failed to load images", error));
+      };
+
+      // Delay loading rest until first image is shown
+      const timer = setTimeout(loadRest, 100);
+      return () => clearTimeout(timer);
+    }
   }, [images]);
 
   useEffect(() => {
@@ -114,8 +133,6 @@ export const ImagesSlider = ({
     },
   };
 
-  const areImagesLoaded = loadedImages.length > 0;
-
   return (
     <div
       className={cn(
@@ -126,18 +143,18 @@ export const ImagesSlider = ({
         perspective: "1000px",
       }}
     >
-      {areImagesLoaded && children}
-      {areImagesLoaded && overlay && (
+      {firstLoaded && children}
+      {firstLoaded && overlay && (
         <div
           className={cn("absolute inset-0 bg-black/60 z-40", overlayClassName)}
         />
       )}
 
-      {areImagesLoaded && (
+      {firstLoaded && (
         <AnimatePresence>
           <motion.img
             key={currentIndex}
-            src={loadedImages[currentIndex]}
+            src={loadedImages[currentIndex] || images[currentIndex]}
             initial="initial"
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}

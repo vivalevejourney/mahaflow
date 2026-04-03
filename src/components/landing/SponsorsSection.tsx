@@ -32,14 +32,14 @@ export const SponsorsSection = () => {
         </div>
 
         {/* Placeholder Slots Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mb-16" style={{ isolation: 'isolate' }}>
           {sponsorSlots.map((slot) => (
             <a
               key={slot.id}
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group aspect-[3/2] flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl bg-card/50 border-2 border-dashed border-border hover:border-primary/50 transition-all duration-300 cursor-pointer hover:bg-primary/5"
+              className="group aspect-[3/2] flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl bg-card/50 border-2 border-dashed border-border hover:border-primary/50 transition-all duration-300 cursor-pointer hover:bg-primary/5 will-change-transform"
             >
               <div className="w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
                 <Building2 className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
