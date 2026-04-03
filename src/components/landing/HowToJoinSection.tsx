@@ -57,7 +57,7 @@ export const HowToJoinSection = () => {
             na próxima aventura!
           </p>
           
-          {/* Trust badges - RotaFácil */}
+          {/* Trust badges - i9 Experience */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {trustBadges.map((badge, index) => (
               <div
