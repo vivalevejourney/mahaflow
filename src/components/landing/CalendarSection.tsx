@@ -25,10 +25,10 @@ export const CalendarSection = () => {
             transformar seu ano.
           </p>
           
-          {/* Credibilidade RotaFácil */}
+          {/* Credibilidade i9 Experience */}
           <div className="flex items-center justify-center gap-2 mt-4 text-sm text-muted-foreground">
             <CheckCircle2 size={16} className="text-primary" />
-            <span>Inscrições organizadas, dados protegidos e comunicação direta</span>
+            <span>Organização profissional por i9 Experience</span>
           </div>
         </div>
 

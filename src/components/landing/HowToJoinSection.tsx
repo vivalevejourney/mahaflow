@@ -57,7 +57,7 @@ export const HowToJoinSection = () => {
             na próxima aventura!
           </p>
           
-          {/* Trust badges - RotaFácil */}
+          {/* Trust badges - i9 Experience */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             {trustBadges.map((badge, index) => (
               <div
@@ -103,10 +103,10 @@ export const HowToJoinSection = () => {
           ))}
         </div>
 
-        {/* Info box - RotaFácil */}
+        {/* Info box - i9 Experience */}
         <div className="max-w-2xl mx-auto mb-12 p-6 rounded-2xl bg-gradient-to-r from-primary/5 to-secondary/30 border border-primary/20">
           <div className="text-center space-y-3">
-            <h4 className="font-semibold text-foreground">Organização Profissional</h4>
+            <h4 className="font-semibold text-foreground">Organização profissional por i9 Experience</h4>
             <p className="text-sm text-muted-foreground">
               Cada experiência é organizada de forma simples, segura e profissional, 
               com todas as informações centralizadas em um único lugar. Menos mensagens, mais clareza.

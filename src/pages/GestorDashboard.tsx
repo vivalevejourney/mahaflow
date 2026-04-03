@@ -61,7 +61,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { useGestor } from '@/contexts/GestorContext';
-import rotafacilLogo from '@/assets/rotafacil-logo.png';
+
 
 // Mock participants data
 const participants = [
@@ -333,8 +333,7 @@ const GestorDashboard = () => {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>Powered by</span>
-                <img src={rotafacilLogo} alt="RotaFácil" className="h-4 opacity-70" />
-                <span className="font-medium">RotaFácil</span>
+                <span className="font-medium">i9 Experience</span>
               </div>
             </div>
             <div className="flex gap-3">
@@ -1052,14 +1051,13 @@ const GestorDashboard = () => {
             </TabsContent>
           </Tabs>
 
-          {/* RotaFácil Branding */}
+          {/* i9 Experience Branding */}
           <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5 border border-primary/20 text-center">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <img src={rotafacilLogo} alt="RotaFácil" className="h-8" />
-              <span className="text-lg font-semibold text-foreground">RotaFácil</span>
+              <span className="text-lg font-semibold text-foreground">i9 Experience</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Plataforma white label para organização de excursões, viagens e experiências.
+              Organização profissional para experiências ao ar livre.
               Menos mensagens, mais clareza. Tudo sob controle.
             </p>
           </div>

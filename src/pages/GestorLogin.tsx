@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useGestor } from '@/contexts/GestorContext';
 import { loginSchema } from '@/lib/validation';
-import rotafacilLogo from '@/assets/rotafacil-logo.png';
+
 
 const GestorLogin = () => {
   const [email, setEmail] = useState('');
@@ -77,8 +77,7 @@ const GestorLogin = () => {
             </h1>
             <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm">
               <span>Powered by</span>
-              <img src={rotafacilLogo} alt="RotaFácil" className="h-4 opacity-70" />
-              <span className="font-medium">RotaFácil</span>
+              <span className="font-medium">i9 Experience</span>
             </div>
           </div>
 

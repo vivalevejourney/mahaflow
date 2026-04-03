@@ -327,16 +327,3 @@
   will-change: transform;
 }
 
-/* Remover marca d'água do Lovable */
-.lovable-edit-button,
-[class*="lovable"],
-[class*="edit-with"],
-button[aria-label*="Edit"],
-a[href*="lovable"],
-div[data-testid*="lovable"],
-[class*="watermark"],
-[id*="watermark"] {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}

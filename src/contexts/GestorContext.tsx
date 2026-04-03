@@ -143,7 +143,7 @@ export const GestorProvider = ({ children }: { children: ReactNode }) => {
   const [avisos, setAvisos] = useState<Aviso[]>(avisosIniciais);
   const [configuracoes, setConfiguracoes] = useState<ConfiguracoesSite>(configuracoesIniciais);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Reset session timeout on activity
   const resetSessionTimeout = () => {
