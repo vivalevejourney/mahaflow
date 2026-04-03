@@ -17,9 +17,12 @@ import viaLactea from '@/assets/mahaflow-via-lactea.jpg';
 import mahaflowLogo from '@/assets/mahaflow-logo-white.png';
 
 export const HeroSection = () => {
-  const scrollToExperiences = () => {
-    const element = document.getElementById('experiencias');
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToExperienceClub = () => {
+    document.getElementById('experience-club')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToProgramacao = () => {
+    document.getElementById('programacao-2026')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const proximaExperiencia = useMemo(() => {
