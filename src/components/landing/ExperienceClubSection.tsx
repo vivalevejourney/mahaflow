@@ -97,7 +97,7 @@ export const ExperienceClubSection = () => {
           <Badge variant="outline" className="text-primary border-primary/30 px-4 py-1.5 text-sm">
             <Sparkles size={14} className="mr-1.5" /> Mahaflow Experience
           </Badge>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
+          <h2 className="text-4xl md:text-6xl font-serif italic text-foreground leading-tight">
             Mahaflow Experience
           </h2>
           <p className="text-primary font-semibold text-xl">Natureza em Movimento</p>

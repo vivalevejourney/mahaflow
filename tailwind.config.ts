@@ -17,6 +17,7 @@ export default {
         sans: ['Montserrat', 'system-ui', 'sans-serif'],
         handwriting: ['Caveat', 'cursive'],
         display: ['Montserrat', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
