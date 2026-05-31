@@ -9,14 +9,15 @@
 @layer base {
   :root {
     /* Mahaflow Brand Colors */
-    --forest: 120 61% 34%;           /* #228B22 - Verde floresta */
-    --forest-dark: 120 61% 25%;      /* Verde floresta escuro */
-    --forest-light: 120 10% 94%;     /* Verde claro natural mais neutro */
-    --sage: 120 15% 80%;             /* Verde sage mais profundo */
-    --earth: 30 20% 35%;             /* Marrom terra mais escuro */
+    --forest: 154 44% 18%;           /* #1B4332 - Verde floresta profundo */
+    --forest-dark: 154 44% 12%;      /* Verde floresta mais escuro */
+    --forest-light: 154 44% 94%;     /* Off-white esverdeado */
+    --sage: 154 20% 80%;             /* Verde sage */
+    --earth: 28 65% 45%;             /* #BC6C25 - Marrom terra cozida */
+    --sand: 48 89% 94%;              /* #FEFae0 - Areia */
     
     /* Core Colors - Premium Escuro */
-    --background: 120 8% 96%;        /* Off-white com toque neutro */
+    --background: 48 89% 97%;        /* Base areia ultra clara */
     --foreground: 0 0% 8%;           /* Preto mais profundo */
 
     --card: 120 5% 98%;              /* Cards mais neutros */
@@ -25,7 +26,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
 
-    --primary: 120 61% 34%;          /* Verde floresta */
+    --primary: 154 44% 18%;          /* Verde floresta profundo */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 120 15% 92%;        /* Secundário mais profundo */
@@ -40,9 +41,9 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 120 10% 82%;           /* Bordas mais definidas */
-    --input: 120 10% 85%;
-    --ring: 120 61% 34%;
+    --border: 154 20% 82%;
+    --input: 154 20% 85%;
+    --ring: 154 44% 18%;
     
     /* Section Dark - para alternância */
     --section-dark-bg: 120 15% 8%;
