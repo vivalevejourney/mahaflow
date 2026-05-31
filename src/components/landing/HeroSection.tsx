@@ -100,11 +100,11 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif italic text-white mb-6 leading-tight tracking-tight"
         >
           Conexão com a natureza.
           <br />
-          <span className="text-primary drop-shadow-glow">Movimento. Bem-estar real.</span>
+          <span className="text-primary drop-shadow-glow not-italic font-sans font-bold">Movimento. Bem-estar real.</span>
         </motion.h1>
 
         {/* Subheading */}
