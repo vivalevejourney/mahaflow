@@ -99,7 +99,7 @@ export const FounderSection = () => {
               Fundadora & CEO
             </span>
             
-            <h2 className="heading-2 text-foreground">
+            <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">
               Danilla de Oliveira
             </h2>
             

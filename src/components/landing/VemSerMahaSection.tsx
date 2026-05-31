@@ -75,8 +75,8 @@ export const VemSerMahaSection = () => {
               <Sparkles size={18} />
               MOVIMENTO 2026
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Tudo que você ganha sendo <span className="text-primary">MAHA</span>
+            <h3 className="text-3xl md:text-5xl font-serif italic text-white mb-4">
+              Tudo que você ganha sendo <span className="text-primary not-italic font-sans font-bold">MAHA</span>
             </h3>
             <p className="text-white/60 text-lg max-w-2xl mx-auto">
               Uma entrada, infinitas possibilidades. Veja o que te espera.
